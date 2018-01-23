@@ -17,6 +17,8 @@ class SELoginViewController: UIViewController {
     @IBOutlet weak var severIPLabel: UILabel!
     @IBOutlet weak var accountTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginUserBtn:UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,6 +46,11 @@ class SELoginViewController: UIViewController {
         let account = self.accountTextField.text;
         let pwd = self.passwordTextField.text;
         self.handleAccountAndPwd(ac: account!, pwd: pwd!)
+    }
+    
+    @IBAction func goLoginUserList(_ sender:Any) {
+        let loginUserList = SELoginUserTableViewController()
+        self.navigationController?.pushViewController(loginUserList, animated: true)
     }
     
     func handleAccountAndPwd(ac:String,pwd:String) -> Void {

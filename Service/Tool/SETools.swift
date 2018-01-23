@@ -9,7 +9,20 @@
 import UIKit
 
 class SETools: NSObject {
-
+    class func hostList()-> Array<Any> {
+        return []
+    }
+}
+class LoginUserDefaults: SETools {
+    class func loginUserList() ->Array<Any> {
+        return []
+    }
+    class func addLoginUser(info:Dictionary<String, Any>) -> Bool {
+        return true
+    }
+    class func removeLoginUser(info:Dictionary<String, Any>) -> Bool {
+        return true
+    }
 }
 
 extension String {

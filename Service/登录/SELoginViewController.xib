@@ -18,6 +18,7 @@
                 <outlet property="logImageView" destination="9gf-Av-Uo0" id="TtE-KZ-195"/>
                 <outlet property="logTitleLabel" destination="OyK-wr-Swx" id="yNl-Dm-U7j"/>
                 <outlet property="loginBtn" destination="siU-39-7dJ" id="Mzu-q7-vf0"/>
+                <outlet property="loginUserBtn" destination="TpQ-iw-zUB" id="Dbi-xW-DOr"/>
                 <outlet property="passwordTextField" destination="CNg-En-wuA" id="wmx-u3-wCf"/>
                 <outlet property="severIPLabel" destination="PaB-6a-e9e" id="iXY-V3-rFl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -80,7 +81,7 @@
                     <rect key="frame" x="20" y="413" width="335" height="174"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2K-yH-zEE">
-                            <rect key="frame" x="8" y="8" width="319" height="30"/>
+                            <rect key="frame" x="8" y="8" width="299" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="VNW-zr-DYT"/>
                             </constraints>
@@ -89,7 +90,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CNg-En-wuA">
-                            <rect key="frame" x="8" y="46" width="319" height="30"/>
+                            <rect key="frame" x="8" y="46" width="299" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="bZL-dL-xm6"/>
                             </constraints>
@@ -107,19 +108,32 @@
                                 <action selector="goLoginAction:" destination="-1" eventType="touchUpInside" id="Av6-pk-yau"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TpQ-iw-zUB">
+                            <rect key="frame" x="308" y="8" width="27" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="27" id="EwB-C4-aGt"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="goLoginUserList:" destination="-1" eventType="touchUpInside" id="JQV-o4-sSJ"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="TpQ-iw-zUB" secondAttribute="trailing" id="6Ga-GC-993"/>
                         <constraint firstAttribute="bottom" secondItem="siU-39-7dJ" secondAttribute="bottom" constant="8" id="7VT-ru-eU2"/>
-                        <constraint firstAttribute="trailing" secondItem="CNg-En-wuA" secondAttribute="trailing" constant="8" id="7aS-ta-gbb"/>
+                        <constraint firstAttribute="trailing" secondItem="CNg-En-wuA" secondAttribute="trailing" constant="28" id="7aS-ta-gbb"/>
                         <constraint firstItem="z2K-yH-zEE" firstAttribute="top" secondItem="IG1-OC-72i" secondAttribute="top" constant="8" id="BCl-Wl-IPY"/>
                         <constraint firstItem="CNg-En-wuA" firstAttribute="leading" secondItem="IG1-OC-72i" secondAttribute="leading" constant="8" id="Bfz-nm-XQf"/>
                         <constraint firstAttribute="trailing" secondItem="siU-39-7dJ" secondAttribute="trailing" constant="8" id="DOR-9A-6Oo"/>
+                        <constraint firstItem="TpQ-iw-zUB" firstAttribute="top" secondItem="IG1-OC-72i" secondAttribute="top" constant="8" id="Got-SI-H9j"/>
                         <constraint firstItem="siU-39-7dJ" firstAttribute="top" secondItem="CNg-En-wuA" secondAttribute="bottom" constant="60" id="W6v-zO-vhb"/>
                         <constraint firstItem="CNg-En-wuA" firstAttribute="top" secondItem="z2K-yH-zEE" secondAttribute="bottom" constant="8" id="azl-Iq-Nqm"/>
-                        <constraint firstAttribute="trailing" secondItem="z2K-yH-zEE" secondAttribute="trailing" constant="8" id="cI4-YG-3IZ"/>
+                        <constraint firstAttribute="trailing" secondItem="z2K-yH-zEE" secondAttribute="trailing" constant="28" id="cI4-YG-3IZ"/>
                         <constraint firstItem="z2K-yH-zEE" firstAttribute="leading" secondItem="IG1-OC-72i" secondAttribute="leading" constant="8" id="eLT-CP-Eyn"/>
                         <constraint firstItem="siU-39-7dJ" firstAttribute="leading" secondItem="IG1-OC-72i" secondAttribute="leading" constant="8" id="ja5-HR-Lc8"/>
+                        <constraint firstItem="TpQ-iw-zUB" firstAttribute="height" secondItem="z2K-yH-zEE" secondAttribute="height" id="ztl-Ik-mhI"/>
                     </constraints>
                 </view>
             </subviews>
