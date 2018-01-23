@@ -20,10 +20,14 @@ class SETabBarViewController: UITabBarController {
         let main_vc = SEMainViewController(nibName: "SEMainViewController", bundle: nil);
         let set_vc = SESettingTableViewController(nibName: "SESettingTableViewController", bundle: nil);
         let per_vc = SEPersonalTableViewController(nibName: "SEPersonalTableViewController", bundle: nil);
-        main_vc.tabBarItem = main_item;
-        set_vc.tabBarItem = set_item;
-        per_vc.tabBarItem = personal_item;
-        self.viewControllers = [main_vc,set_vc,per_vc];
+        let nav_main = UINavigationController(rootViewController: main_vc)
+        let nav_set = UINavigationController(rootViewController: set_vc)
+        let nav_per = UINavigationController(rootViewController: per_vc)
+        nav_main.tabBarItem = main_item;
+        nav_set.tabBarItem = set_item;
+        nav_per.tabBarItem = personal_item;
+
+        self.viewControllers = [nav_main,nav_set,nav_per];
     }
 
     override func didReceiveMemoryWarning() {
