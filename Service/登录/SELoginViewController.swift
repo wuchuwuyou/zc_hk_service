@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SELoginViewController: UIViewController {
 
@@ -28,6 +29,10 @@ class SELoginViewController: UIViewController {
         self.loginBtn.setTitle("登录", for: .normal)
         self.accountTextField.placeholder = "请输入账号"
         self.passwordTextField.placeholder = "请输入密码"
+        #if DEBUG
+            self.accountTextField.text = "pingguozhongxin"
+            self.passwordTextField.text = "123"
+        #endif
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,22 +60,36 @@ class SELoginViewController: UIViewController {
     
     func handleAccountAndPwd(ac:String,pwd:String) -> Void {
         if ac.isEmpty {
-            
+            SVProgressHUD.showInfo(withStatus: "请输入登录账号")
+            return
         }
         if pwd.isEmpty {
-            
+            SVProgressHUD.showInfo(withStatus: "请输入登录密码")
+            return
         }
-        let ac_base64 = ac.encodeBase64()
-        let pwd_base64 = pwd.encodeBase64()
-        
-        self.login(ac: ac_base64, pwd: pwd_base64)
+        self.login(ac: ac, pwd: pwd)
     }
     
     func login(ac:String!,pwd:String!) {
-        SENetworkAPI.sharedInstance.login(ac: ac, pwd: pwd)
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let tab = SETabBarViewController()
-//        appDelegate.window?.rootViewController = tab
+        SVProgressHUD.show(withStatus: "登录中")
+        let ac_base64 = ac.encodeBase64()
+        let pwd_base64 = pwd.encodeBase64()
+
+        SENetworkAPI.sharedInstance.login(ac: ac_base64, pwd: pwd_base64) { (response) in
+            if response.error != nil {
+                
+                SVProgressHUD.showError(withStatus: "登录失败")
+                return;
+            }
+            let decoder = JSONDecoder()
+            let login_model = try! decoder.decode(LoginModel.self, from: response.response!)
+            SEModel.shared.loginModel = login_model
+            SEModel.shared.loginUser = LoginUser(username: ac, password: pwd)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let tab = SETabBarViewController()
+            appDelegate.window?.rootViewController = tab
+            SVProgressHUD.dismiss()
+        }
     }
     /*
     // MARK: - Navigation

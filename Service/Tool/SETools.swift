@@ -9,8 +9,61 @@
 import UIKit
 
 class SETools: NSObject {
-    class func hostList()-> Array<Any> {
-        return []
+    struct HostModel:Codable {
+        var host:String
+        var port:String
+        var method:String
+        var description:String
+    }
+    static let host_store_name = "app_host"
+    class func hostList()-> [HostModel] {
+        let jsonArray = UserDefaults.standard.object(forKey: host_store_name) as! [String]
+        var array = Array<HostModel>()
+        for json in jsonArray {
+            let jsonData = json.data(using: .utf8)!
+            let decoder = JSONDecoder()
+            let host = try! decoder.decode(HostModel.self, from: jsonData)
+            array.append(host)
+        }
+        return array
+    }
+    class func addHost(host:HostModel)->Bool {
+        var array = self.hostList()
+        var flag = true /// 是否可以存储
+        for h in array {
+            if(h.host == host.host && h.port == host.port && h.method == host.method && h.description == host.description) {
+                print("存在了")
+                flag = false
+            }
+        }
+        if flag {
+            array.append(host)
+            return self.saveHostArray(array: array)
+        }
+        return false
+    }
+    class func saveHostArray(array:[HostModel]) ->Bool {
+        var jsonArray:[String] = []
+        for host in array {
+            let encoder = JSONEncoder()
+            let data = try! encoder.encode(host)
+            let json = String(data: data, encoding: .utf8)!
+            jsonArray.append(json)
+        }
+        UserDefaults.standard.set(jsonArray, forKey: host_store_name)
+        return UserDefaults.standard.synchronize()
+    }
+    class func deleteHost(host:HostModel) -> Bool {
+        let array = self.hostList()
+        var save_array:[HostModel] = []
+        
+        for h in array {
+            if(h.host == host.host && h.port == host.port && h.method == host.method && h.description == host.description) {
+                print("存在了")
+                save_array.append(h)
+            }
+        }
+       return self.saveHostArray(array: save_array)
     }
 }
 class LoginUserDefaults: SETools {
@@ -38,4 +91,8 @@ extension String {
     func encodeBase64() -> String {
         return Data(self.utf8).base64EncodedString()
     }
+}
+
+extension Data {
+   
 }

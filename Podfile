@@ -3,9 +3,11 @@
 
 target 'Service' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
 
-  # Pods for Service
+  use_frameworks!
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
+  pod 'SVProgressHUD'
+  # Pods for Service
+
 end
