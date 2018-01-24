@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D27E4DB2018E26500BD9D6D /* SESettingHostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D27E4D92018E26500BD9D6D /* SESettingHostTableViewCell.swift */; };
+		0D27E4DC2018E26500BD9D6D /* SESettingHostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D27E4DA2018E26500BD9D6D /* SESettingHostTableViewCell.xib */; };
 		0D625B6920174CEA00E4227E /* SENetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625B6820174CEA00E4227E /* SENetworkAPI.swift */; };
 		0D625B6C2017569C00E4227E /* SETools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625B6B2017569C00E4227E /* SETools.swift */; };
 		0D625B6E201839D900E4227E /* SEModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625B6D201839D900E4227E /* SEModel.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D27E4D92018E26500BD9D6D /* SESettingHostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SESettingHostTableViewCell.swift; sourceTree = "<group>"; };
+		0D27E4DA2018E26500BD9D6D /* SESettingHostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SESettingHostTableViewCell.xib; sourceTree = "<group>"; };
 		0D625B6820174CEA00E4227E /* SENetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SENetworkAPI.swift; sourceTree = "<group>"; };
 		0D625B6B2017569C00E4227E /* SETools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SETools.swift; sourceTree = "<group>"; };
 		0D625B6D201839D900E4227E /* SEModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEModel.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				0D8736381FFBCD6600A07CF6 /* SESettingHostViewController.xib */,
 				0D87363E2002148A00A07CF6 /* SESettingTableViewController.swift */,
 				0D87363F2002148A00A07CF6 /* SESettingTableViewController.xib */,
+				0D27E4D92018E26500BD9D6D /* SESettingHostTableViewCell.swift */,
+				0D27E4DA2018E26500BD9D6D /* SESettingHostTableViewCell.xib */,
 			);
 			path = "设置";
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D27E4DC2018E26500BD9D6D /* SESettingHostTableViewCell.xib in Resources */,
 				0D8736351FFBCC0500A07CF6 /* SELoginUserTableViewController.xib in Resources */,
 				0D8736211FFBBB4500A07CF6 /* LaunchScreen.storyboard in Resources */,
 				0D8736502002189300A07CF6 /* SEPersonalTableViewController.xib in Resources */,
@@ -361,6 +368,7 @@
 			files = (
 				0D8736391FFBCD6600A07CF6 /* SESettingHostViewController.swift in Sources */,
 				0D87364B2002182400A07CF6 /* SEMainViewController.swift in Sources */,
+				0D27E4DB2018E26500BD9D6D /* SESettingHostTableViewCell.swift in Sources */,
 				0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */,
 				0D625B97201890FC00E4227E /* SEMainCollectionViewCell.swift in Sources */,
 				0D8736482002151F00A07CF6 /* SETabBarViewController.swift in Sources */,

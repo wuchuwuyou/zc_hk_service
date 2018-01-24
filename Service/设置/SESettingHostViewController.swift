@@ -8,17 +8,32 @@
 
 import UIKit
 
-class SESettingHostViewController: UIViewController {
+class SESettingHostViewController: UIViewController,UITextFieldDelegate,SelectHostDelegate {
 
+    
+    @IBOutlet weak var hostTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.hostTextField.delegate = self
     }
-
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        let settingHost = SESettingTableViewController(nibName: "SESettingTableViewController", bundle: nil)
+        settingHost.delegate = self
+        self.navigationController?.pushViewController(settingHost, animated: true)
+        return false
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func selectHost(host: HostModel) {
+        SETools.setCurrentHost(host: host)
+        self.hostTextField.text = host.stringText()
     }
     
 

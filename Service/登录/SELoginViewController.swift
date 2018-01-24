@@ -48,6 +48,13 @@ class SELoginViewController: UIViewController {
     @IBAction func goLoginAction(_ sender: Any) {
         self.accountTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
+        
+        let host = SETools.currentHost()
+        if (host.host.isEmpty||host.port.isEmpty) {
+            SVProgressHUD.showInfo(withStatus: "请设置网络地址")
+            return;
+        }
+        
         let account = self.accountTextField.text;
         let pwd = self.passwordTextField.text;
         self.handleAccountAndPwd(ac: account!, pwd: pwd!)

@@ -8,18 +8,43 @@
 
 import UIKit
 
-class SETools: NSObject {
-    struct HostModel:Codable {
-        var host:String
-        var port:String
-        var method:String
-        var description:String
+struct HostModel:Codable {
+    var host:String
+    var port:String
+    var method:String
+    var description:String
+    
+    func stringText() -> String {
+        return method+"://"+host+":"+port
     }
+}
+
+class SETools: NSObject {
     static let host_store_name = "app_host"
+    static let current_host = "app_current_host"
+    
+    class func currentHost()->HostModel {
+        let json:String? = UserDefaults.standard.object(forKey: current_host) as? String
+        let jsonData = json?.data(using: .utf8)
+        let decoder = JSONDecoder()
+        let host = try! decoder.decode(HostModel.self, from: jsonData!)
+        return host
+    }
+    class func setCurrentHost(host:HostModel) -> Bool {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(host)
+        let json = String(data: data, encoding: .utf8)!
+        UserDefaults.standard.set(json, forKey: current_host)
+        return UserDefaults.standard.synchronize()
+    }
+    
     class func hostList()-> [HostModel] {
-        let jsonArray = UserDefaults.standard.object(forKey: host_store_name) as! [String]
-        var array = Array<HostModel>()
-        for json in jsonArray {
+        let jsonArray:[String]? = UserDefaults.standard.object(forKey: host_store_name) as? [String]
+        var array:[HostModel] = []
+        if jsonArray==nil {
+            return []
+        }
+        for json in jsonArray! {
             let jsonData = json.data(using: .utf8)!
             let decoder = JSONDecoder()
             let host = try! decoder.decode(HostModel.self, from: jsonData)

@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol SelectHostDelegate {
+    func selectHost(host:HostModel)
+}
+
 class SESettingTableViewController: UITableViewController {
-        
+    
+    var dataArray: [HostModel] = []
+    var delegate: SelectHostDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +25,9 @@ class SESettingTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.tableView.register(UINib(nibName: "SESettingHostTableViewCell", bundle: nil), forCellReuseIdentifier: "SESettingHostTableViewCell")
+        self.dataArray = SETools.hostList()
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,24 +39,32 @@ class SESettingTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return self.dataArray.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SESettingHostTableViewCell", for: indexPath)
+        let model = dataArray[indexPath.section]
         // Configure the cell...
-
+        cell.textLabel?.text = model.stringText()
         return cell
     }
-    */
-
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let model = dataArray[section]
+        return model.description
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = dataArray[indexPath.section]
+        self.delegate?.selectHost(host: model)
+        self.navigationController?.popViewController(animated: true)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

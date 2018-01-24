@@ -25,7 +25,8 @@ class SENetworkAPI: NSObject {
     static let sharedInstance = SENetworkAPI()
     private override init() {}
     var urlPath = "/ZCTJFirstCHospital/servlet/DevOpsService"
-    var host = "http://60.29.131.62:11000"
+//    var host = "http://60.29.131.62:11000"
+    var host = SETools.currentHost().stringText()
 //    var Complete:((response: Any, error: Error) -> Void)
     public struct SEResponse {
         /// The server's response to the URL request.
