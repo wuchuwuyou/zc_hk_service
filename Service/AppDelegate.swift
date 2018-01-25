@@ -31,8 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func settingHost() {
         
-        SETools.addHost(host: HostModel(host: "60.29.131.62", port: "11000", method: "http", description: "外网"))
-        SETools.addHost(host: HostModel(host: "60.29.131.62", port: "11000", method: "http", description: "内网"))
+        HostUserDefaults.addHost(host: HostModel(host: "60.29.131.62", port: "11000", method: "http", description: "外网"))
+        HostUserDefaults.addHost(host: HostModel(host: "172.16.0.1", port: "11000", method: "http", description: "内网"))
 
     }
     func applicationWillResignActive(_ application: UIApplication) {

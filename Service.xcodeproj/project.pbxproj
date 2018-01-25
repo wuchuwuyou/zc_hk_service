@@ -16,6 +16,12 @@
 		0D625B98201890FC00E4227E /* SEMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625B96201890FC00E4227E /* SEMainCollectionViewCell.xib */; };
 		0D625B9B2018AFE500E4227E /* SEMainCollectionReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625B992018AFE500E4227E /* SEMainCollectionReusableHeaderView.swift */; };
 		0D625B9C2018AFE500E4227E /* SEMainCollectionReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625B9A2018AFE500E4227E /* SEMainCollectionReusableHeaderView.xib */; };
+		0D625BA52019C6E200E4227E /* SEOpinionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625BA32019C6E200E4227E /* SEOpinionViewController.swift */; };
+		0D625BA62019C6E200E4227E /* SEOpinionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625BA42019C6E200E4227E /* SEOpinionViewController.xib */; };
+		0D625BAD2019F0C100E4227E /* SEMyOpinionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625BAB2019F0C100E4227E /* SEMyOpinionViewController.swift */; };
+		0D625BAE2019F0C100E4227E /* SEMyOpinionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625BAC2019F0C100E4227E /* SEMyOpinionViewController.xib */; };
+		0D625BB12019F12600E4227E /* SEListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625BAF2019F12600E4227E /* SEListTableViewCell.swift */; };
+		0D625BB22019F12600E4227E /* SEListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625BB02019F12600E4227E /* SEListTableViewCell.xib */; };
 		0D8736171FFBBB4500A07CF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8736161FFBBB4500A07CF6 /* AppDelegate.swift */; };
 		0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8736181FFBBB4500A07CF6 /* ViewController.swift */; };
 		0D87361E1FFBBB4500A07CF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D87361D1FFBBB4500A07CF6 /* Assets.xcassets */; };
@@ -47,6 +53,12 @@
 		0D625B96201890FC00E4227E /* SEMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		0D625B992018AFE500E4227E /* SEMainCollectionReusableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEMainCollectionReusableHeaderView.swift; sourceTree = "<group>"; };
 		0D625B9A2018AFE500E4227E /* SEMainCollectionReusableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEMainCollectionReusableHeaderView.xib; sourceTree = "<group>"; };
+		0D625BA32019C6E200E4227E /* SEOpinionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEOpinionViewController.swift; sourceTree = "<group>"; };
+		0D625BA42019C6E200E4227E /* SEOpinionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEOpinionViewController.xib; sourceTree = "<group>"; };
+		0D625BAB2019F0C100E4227E /* SEMyOpinionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEMyOpinionViewController.swift; sourceTree = "<group>"; };
+		0D625BAC2019F0C100E4227E /* SEMyOpinionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEMyOpinionViewController.xib; sourceTree = "<group>"; };
+		0D625BAF2019F12600E4227E /* SEListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEListTableViewCell.swift; sourceTree = "<group>"; };
+		0D625BB02019F12600E4227E /* SEListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEListTableViewCell.xib; sourceTree = "<group>"; };
 		0D8736131FFBBB4500A07CF6 /* Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Service.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D8736161FFBBB4500A07CF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D8736181FFBBB4500A07CF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -83,20 +95,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D27E4D720179B5900BD9D6D /* 意见反馈 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "意见反馈";
-			sourceTree = "<group>";
-		};
-		0D27E4D820179B6E00BD9D6D /* 报修 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "报修";
-			sourceTree = "<group>";
-		};
 		0D625B6720174C9A00E4227E /* NetworkAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +110,17 @@
 				0D625B6B2017569C00E4227E /* SETools.swift */,
 			);
 			path = Tool;
+			sourceTree = "<group>";
+		};
+		0D625BA22019C6CE00E4227E /* 意见反馈 */ = {
+			isa = PBXGroup;
+			children = (
+				0D625BA32019C6E200E4227E /* SEOpinionViewController.swift */,
+				0D625BA42019C6E200E4227E /* SEOpinionViewController.xib */,
+				0D625BAB2019F0C100E4227E /* SEMyOpinionViewController.swift */,
+				0D625BAC2019F0C100E4227E /* SEMyOpinionViewController.xib */,
+			);
+			path = "意见反馈";
 			sourceTree = "<group>";
 		};
 		0D87360A1FFBBB4500A07CF6 = {
@@ -139,10 +148,9 @@
 				0D625B6A2017568900E4227E /* Tool */,
 				0D625B6720174C9A00E4227E /* NetworkAPI */,
 				0D873646200214F900A07CF6 /* Other */,
+				0D625BA22019C6CE00E4227E /* 意见反馈 */,
 				0D87363D2002143F00A07CF6 /* 个人 */,
 				0D87363B2002142700A07CF6 /* 主界面 */,
-				0D27E4D820179B6E00BD9D6D /* 报修 */,
-				0D27E4D720179B5900BD9D6D /* 意见反馈 */,
 				0D8736361FFBCD3F00A07CF6 /* 设置 */,
 				0D8736311FFBCBC000A07CF6 /* 用户列表 */,
 				0D87362C1FFBBBF600A07CF6 /* 登录 */,
@@ -212,6 +220,8 @@
 			isa = PBXGroup;
 			children = (
 				0D8736472002151F00A07CF6 /* SETabBarViewController.swift */,
+				0D625BAF2019F12600E4227E /* SEListTableViewCell.swift */,
+				0D625BB02019F12600E4227E /* SEListTableViewCell.xib */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -300,8 +310,11 @@
 				0D27E4DC2018E26500BD9D6D /* SESettingHostTableViewCell.xib in Resources */,
 				0D8736351FFBCC0500A07CF6 /* SELoginUserTableViewController.xib in Resources */,
 				0D8736211FFBBB4500A07CF6 /* LaunchScreen.storyboard in Resources */,
+				0D625BB22019F12600E4227E /* SEListTableViewCell.xib in Resources */,
+				0D625BA62019C6E200E4227E /* SEOpinionViewController.xib in Resources */,
 				0D8736502002189300A07CF6 /* SEPersonalTableViewController.xib in Resources */,
 				0D87361E1FFBBB4500A07CF6 /* Assets.xcassets in Resources */,
+				0D625BAE2019F0C100E4227E /* SEMyOpinionViewController.xib in Resources */,
 				0D8736412002148A00A07CF6 /* SESettingTableViewController.xib in Resources */,
 				0D8736301FFBBC2200A07CF6 /* SELoginViewController.xib in Resources */,
 				0D87364C2002182400A07CF6 /* SEMainViewController.xib in Resources */,
@@ -367,9 +380,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D8736391FFBCD6600A07CF6 /* SESettingHostViewController.swift in Sources */,
+				0D625BB12019F12600E4227E /* SEListTableViewCell.swift in Sources */,
 				0D87364B2002182400A07CF6 /* SEMainViewController.swift in Sources */,
 				0D27E4DB2018E26500BD9D6D /* SESettingHostTableViewCell.swift in Sources */,
 				0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */,
+				0D625BA52019C6E200E4227E /* SEOpinionViewController.swift in Sources */,
 				0D625B97201890FC00E4227E /* SEMainCollectionViewCell.swift in Sources */,
 				0D8736482002151F00A07CF6 /* SETabBarViewController.swift in Sources */,
 				0D8736402002148A00A07CF6 /* SESettingTableViewController.swift in Sources */,
@@ -377,6 +392,7 @@
 				0D87362F1FFBBC2200A07CF6 /* SELoginViewController.swift in Sources */,
 				0D8736341FFBCC0500A07CF6 /* SELoginUserTableViewController.swift in Sources */,
 				0D625B9B2018AFE500E4227E /* SEMainCollectionReusableHeaderView.swift in Sources */,
+				0D625BAD2019F0C100E4227E /* SEMyOpinionViewController.swift in Sources */,
 				0D625B6920174CEA00E4227E /* SENetworkAPI.swift in Sources */,
 				0D625B6E201839D900E4227E /* SEModel.swift in Sources */,
 				0D87364F2002189300A07CF6 /* SEPersonalTableViewController.swift in Sources */,

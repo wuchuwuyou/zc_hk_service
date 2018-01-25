@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class SELoginViewController: UIViewController {
+class SELoginViewController: UIViewController,SelectUserDelegate {
 
     @IBOutlet weak var logTitleLabel: UILabel!
     @IBOutlet weak var logImageView: UIImageView!
@@ -49,7 +49,7 @@ class SELoginViewController: UIViewController {
         self.accountTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
         
-        let host = SETools.currentHost()
+        let host = HostUserDefaults.currentHost()
         if (host.host.isEmpty||host.port.isEmpty) {
             SVProgressHUD.showInfo(withStatus: "请设置网络地址")
             return;
@@ -62,9 +62,13 @@ class SELoginViewController: UIViewController {
     
     @IBAction func goLoginUserList(_ sender:Any) {
         let loginUserList = SELoginUserTableViewController()
+        loginUserList.delegate = self
         self.navigationController?.pushViewController(loginUserList, animated: true)
     }
-    
+    func selectUser(user: LoginUser) {
+        self.accountTextField.text = user.username
+        self.passwordTextField.text = user.password
+    }
     func handleAccountAndPwd(ac:String,pwd:String) -> Void {
         if ac.isEmpty {
             SVProgressHUD.showInfo(withStatus: "请输入登录账号")
@@ -85,13 +89,14 @@ class SELoginViewController: UIViewController {
         SENetworkAPI.sharedInstance.login(ac: ac_base64, pwd: pwd_base64) { (response) in
             if response.error != nil {
                 
-                SVProgressHUD.showError(withStatus: "登录失败")
+                SVProgressHUD.showError(withStatus: response.error?.localizedDescription)
                 return;
             }
             let decoder = JSONDecoder()
             let login_model = try! decoder.decode(LoginModel.self, from: response.response!)
             SEModel.shared.loginModel = login_model
-            SEModel.shared.loginUser = LoginUser(username: ac, password: pwd)
+            SEModel.shared.loginUser = LoginUser.initWithInfo(username: ac, password: pwd, name: (SEModel.shared.loginModel?.userName)!)
+            LoginUserDefaults.addLoginUser(info: SEModel.shared.loginUser!)
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let tab = SETabBarViewController()
             appDelegate.window?.rootViewController = tab

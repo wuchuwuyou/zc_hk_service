@@ -46,9 +46,20 @@ enum Service_type:String {
     case default_service = "default"
 }
 
-struct LoginUser {
-    let username:String
-    let password:String
+class LoginUser:NSObject,Codable {
+    var username:String = ""
+    var password:String = ""
+    @objc var user_name:String = ""
+    class func initWithInfo(username:String,password:String,name:String) ->LoginUser {
+        let model = LoginUser()
+        model.username = username
+        model.password = password
+        model.user_name = name
+        return model
+    }
+//    func name() -> String {
+//       return self.user_name
+//    }
 }
 
 struct LoginModel:Codable {

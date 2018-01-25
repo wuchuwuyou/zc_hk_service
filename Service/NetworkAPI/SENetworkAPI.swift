@@ -10,15 +10,15 @@ import UIKit
 import Alamofire
 
 
-struct SEError: Error {
-    enum ErrorKind {
-        case NetworkError
-    }
-    
-    let code: Int
-    let message: String
-    let kind: ErrorKind
-}
+//struct SEError: Error {
+//    enum ErrorKind {
+//        case NetworkError
+//    }
+//
+//    let code: Int
+//    let message: String
+//    let kind: ErrorKind
+//}
 
 
 class SENetworkAPI: NSObject {
@@ -26,7 +26,7 @@ class SENetworkAPI: NSObject {
     private override init() {}
     var urlPath = "/ZCTJFirstCHospital/servlet/DevOpsService"
 //    var host = "http://60.29.131.62:11000"
-    var host = SETools.currentHost().stringText()
+    var host = HostUserDefaults.currentHost().stringText()
 //    var Complete:((response: Any, error: Error) -> Void)
     public struct SEResponse {
         /// The server's response to the URL request.
@@ -34,13 +34,11 @@ class SENetworkAPI: NSObject {
         
         
         /// The error encountered while executing or validating the request.
-        public let error: SEError?
+        public let error: NSError?
     }
-    public func login(ac:String!,pwd:String!,complete:@escaping (SEResponse) -> Void){
-        let loginURL = self.requestURL(cmd: "APPLoginCmd")
-        let params :Parameters = ["password":pwd,"userName":ac,"companyId":"0","cmd":"APPLoginCmd"]
-        
-        Alamofire.request(loginURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil).response { response in
+    public func request(url:String,method:HTTPMethod,parameters: Parameters? = nil,encoding: ParameterEncoding = URLEncoding.default,
+                        headers: HTTPHeaders? = nil,complete:@escaping (SEResponse) -> Void) {
+        Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers).response { (response) in
             var error = response.error
             var data = response.data
             let err = self.handleJSONData(data: response.data)
@@ -48,25 +46,64 @@ class SENetworkAPI: NSObject {
                 error = err
                 data = nil
             }
-            let resp = SEResponse(response: data, error: error as? SEError)
+            let resp = SEResponse(response: data, error: error as NSError?)
             complete(resp)
         }
     }
+    public func login(ac:String!,pwd:String!,complete:@escaping (SEResponse) -> Void){
+        let loginURL = self.requestURL(cmd: "APPLoginCmd")
+        let params :Parameters = ["password":pwd,"userName":ac,"companyId":"0","cmd":"APPLoginCmd"]
+        
+        self.request(url: loginURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+    }
+    
+    public func addOpinion(title:String!,content:String!,complete:@escaping (SEResponse) -> Void) {
+        let addOpinionURL = self.requestURL(cmd: "ComplaintAndAdviceAddCmd")
+        let item = ["content":content,"title":title,"status":"0","id":"-1"]
+        let property = ["isApp":"1","userAccount":SEModel.shared.loginUser?.username,"status":"0"]
+        let infoItem = ["infosItem":["item":[item]],"property":property] as [String : Any]
+        
+        self.request(url: addOpinionURL, method: .post, parameters: infoItem, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+
+    }
+    public func opinionList(index:Int!,count:Int,status:Int,complete:@escaping (SEResponse) -> Void) {
+        let listURL = self.requestURL(cmd: "ComplaintAndAdviceSearchCmd")
+        let pageInfos = ["index":index,"number":count,"totalNumber":-1]
+        let property = ["isApp":"1","userAccount":SEModel.shared.loginUser?.username as Any,"status":status] as [String : Any]
+        let params = ["pageInfos":pageInfos,"property":property] as [String : Any]
+        self.request(url: listURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+
+    }
+    
     func handleJSONData(data:Data?) -> Error? {
         let jsonData = data
         do {
-            let json:[String:AnyObject] = try JSONSerialization.jsonObject(with: jsonData!, options: .allowFragments) as! [String : AnyObject]
+            var json:[String:AnyObject] = try JSONSerialization.jsonObject(with: jsonData!, options: .allowFragments) as! [String : AnyObject]
+            if(json.keys.contains("resp")) {
+                let resp = json["resp"] as! [String:AnyObject]
+                if resp.keys.contains("responseCommand") {
+                    json = resp
+                }
+            }
             if json.keys.contains("responseCommand") {
                 let success = json["responseCommand"]
                 if (success?.isEqual("OK"))! {
                     return nil;
                 }else {
-                    return SEError(code: -1, message: "网络错误", kind: .NetworkError)
+                    return NSError(domain: host, code: -1, userInfo: ["message":"网络错误"])
+//                    return SEError(code: -1, message: "网络错误", kind: .NetworkError)
                 }
             }else {
-                return SEError(code: -1, message: "网络错误", kind: .NetworkError)
+                return NSError(domain: host, code: -1, userInfo: ["message":"网络错误"])
+//                return SEError(code: -1, message: "网络错误", kind: .NetworkError)
             }
-        } catch let error as Error {
+        } catch let error as NSError {
             return error
         }
     }

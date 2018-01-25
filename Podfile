@@ -8,6 +8,8 @@ target 'Service' do
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
   pod 'SVProgressHUD'
+  pod 'HMSegmentedControl'
+  pod 'MJRefresh'
   # Pods for Service
 
 end

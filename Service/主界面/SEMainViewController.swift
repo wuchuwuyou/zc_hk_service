@@ -46,8 +46,8 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
         return CGSize(width: width, height: height)
     }
     func initData() {
-        let data_baoxiu = SEMainListModel.initWithInfo(title: "临时报修", imageName: "", type: .baoxiu_service)
-        let data_tousu = SEMainListModel.initWithInfo(title: "投诉建议", imageName: "", type: .tousu_service)
+        let data_baoxiu = SEMainListModel.initWithInfo(title: "临时报修", imageName: "登录", type: .baoxiu_service)
+        let data_tousu = SEMainListModel.initWithInfo(title: "投诉建议", imageName: "登录", type: .tousu_service)
         self.dataArray = [data_tousu,data_baoxiu]
     }
     override func didReceiveMemoryWarning() {
@@ -73,14 +73,13 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SEMainCollectionReusableHeaderView", for: indexPath) as! SEMainCollectionReusableHeaderView
-            let image = UIImage(named: "")
+            let image = UIImage(named: "640x1136")
             header.imageView.image = image
             return header
         }else {
             return UICollectionReusableView();
         }
     }
-    
     
     func showServiceController(model:SEMainListModel?) {
         if model == nil {
@@ -91,6 +90,9 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
             case Service_type.baoxiu_service:
                 break
             case Service_type.tousu_service:
+                let opinion = SEOpinionViewController(nibName: "SEOpinionViewController", bundle: nil)
+                opinion.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(opinion, animated: true)
                 break
             case Service_type.default_service:
                 print("can't show service controller")

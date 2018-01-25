@@ -20,12 +20,18 @@ struct HostModel:Codable {
 }
 
 class SETools: NSObject {
+    
+}
+class HostUserDefaults: SETools  {
     static let host_store_name = "app_host"
     static let current_host = "app_current_host"
     
     class func currentHost()->HostModel {
         let json:String? = UserDefaults.standard.object(forKey: current_host) as? String
         let jsonData = json?.data(using: .utf8)
+        if (json == nil || jsonData == nil) {
+            return HostModel(host: "", port: "", method: "", description: "")
+        }
         let decoder = JSONDecoder()
         let host = try! decoder.decode(HostModel.self, from: jsonData!)
         return host
@@ -85,22 +91,79 @@ class SETools: NSObject {
         for h in array {
             if(h.host == host.host && h.port == host.port && h.method == host.method && h.description == host.description) {
                 print("存在了")
+                
+            }else {
                 save_array.append(h)
             }
         }
-       return self.saveHostArray(array: save_array)
+        return self.saveHostArray(array: save_array)
     }
 }
+
+
 class LoginUserDefaults: SETools {
-    class func loginUserList() ->Array<Any> {
-        return []
+    
+    static let login_userDefaults = "login_userDefaults"
+    
+    class func loginUserList() ->[LoginUser] {
+        var jsonArray:[String]? = UserDefaults.standard.object(forKey: login_userDefaults) as? [String]
+        var array:[LoginUser] = []
+        if jsonArray == nil {
+            jsonArray = []
+        }
+        for json in jsonArray! {
+            let jsonData = json.data(using: .utf8)!
+            let decoder = JSONDecoder()
+            let user = try! decoder.decode(LoginUser.self, from: jsonData)
+            array.append(user)
+        }
+        return array
     }
-    class func addLoginUser(info:Dictionary<String, Any>) -> Bool {
-        return true
+    class func addLoginUser(info:LoginUser) -> Bool {
+        var array = self.loginUserList()
+        var flag = true /// 是否可以存储
+        for h in array {
+            if(h.username == info.username && h.password == info.password && h.user_name == info.user_name ) {
+                print("存在了")
+                flag = false
+            }
+        }
+        if flag {
+            array.append(info)
+            return self.saveUserListArrray(array: array)
+        }
+        return false
     }
-    class func removeLoginUser(info:Dictionary<String, Any>) -> Bool {
-        return true
+    class func removeLoginUser(info:LoginUser) -> Bool {
+        let array = self.loginUserList()
+        var save_array:[LoginUser] = []
+        
+        for h in array {
+            if(h.username == info.username && h.password == info.password && h.user_name == info.user_name ) {
+                print("存在了")
+            
+            }else {
+                save_array.append(h)
+            }
+        }
+        return self.saveUserListArrray(array: save_array)
     }
+    
+    class func saveUserListArrray(array:[LoginUser]) ->Bool {
+        var jsonArray:[String] = []
+        for user in array {
+            let encoder = JSONEncoder()
+            let data = try! encoder.encode(user)
+            let json = String(data: data, encoding: .utf8)!
+            jsonArray.append(json)
+        }
+        UserDefaults.standard.set(jsonArray, forKey: login_userDefaults)
+        return UserDefaults.standard.synchronize()
+    }
+    
+//    class func userNameGroup() ->[String:[LoginUser]] {
+//        
+//    }
 }
 
 extension String {

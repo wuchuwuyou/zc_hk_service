@@ -14,15 +14,23 @@ class SETabBarViewController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let main_item = UITabBarItem(title: "主页", image: nil, selectedImage: nil)
-        let set_item = UITabBarItem(title: "设置", image: nil, selectedImage: nil)
-        let personal_item = UITabBarItem(title: "我的", image: nil, selectedImage: nil)
+        let main_item = UITabBarItem(title: "主页", image: UIImage(named:"主页"), selectedImage: nil)
+        let set_item = UITabBarItem(title: "设置", image: UIImage(named:"设置"), selectedImage: nil)
+        let personal_item = UITabBarItem(title: "我的", image: UIImage(named:"我"), selectedImage: nil)
         let main_vc = SEMainViewController(nibName: "SEMainViewController", bundle: nil);
+
         let set_vc = SESettingTableViewController(nibName: "SESettingTableViewController", bundle: nil);
         let per_vc = SEPersonalTableViewController(nibName: "SEPersonalTableViewController", bundle: nil);
+        
         let nav_main = UINavigationController(rootViewController: main_vc)
+    
+        
         let nav_set = UINavigationController(rootViewController: set_vc)
+        
+        
         let nav_per = UINavigationController(rootViewController: per_vc)
+        
+        
         nav_main.tabBarItem = main_item;
         nav_set.tabBarItem = set_item;
         nav_per.tabBarItem = personal_item;

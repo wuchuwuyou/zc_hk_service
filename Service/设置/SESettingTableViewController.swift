@@ -26,7 +26,7 @@ class SESettingTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.tableView.register(UINib(nibName: "SESettingHostTableViewCell", bundle: nil), forCellReuseIdentifier: "SESettingHostTableViewCell")
-        self.dataArray = SETools.hostList()
+        self.dataArray = HostUserDefaults.hostList()
         self.tableView.reloadData()
     }
 

@@ -18,6 +18,10 @@ class SESettingHostViewController: UIViewController,UITextFieldDelegate,SelectHo
 
         // Do any additional setup after loading the view.
         self.hostTextField.delegate = self
+        let host = HostUserDefaults.currentHost()
+        if (host.host.isEmpty != nil && host.port.isEmpty != nil){
+            self.hostTextField.text = host.stringText()
+        }
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -32,7 +36,7 @@ class SESettingHostViewController: UIViewController,UITextFieldDelegate,SelectHo
     }
     
     func selectHost(host: HostModel) {
-        SETools.setCurrentHost(host: host)
+        HostUserDefaults.setCurrentHost(host: host)
         self.hostTextField.text = host.stringText()
     }
     
