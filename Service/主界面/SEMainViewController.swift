@@ -88,6 +88,9 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
         let type:Service_type = model!.type
         switch type {
             case Service_type.baoxiu_service:
+                let repair = SERepairViewController(nibName: "SERepairViewController", bundle: nil)
+                repair.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(repair, animated: true)
                 break
             case Service_type.tousu_service:
                 let opinion = SEOpinionViewController(nibName: "SEOpinionViewController", bundle: nil)

@@ -10,6 +10,7 @@ target 'Service' do
   pod 'SVProgressHUD'
   pod 'HMSegmentedControl'
   pod 'MJRefresh'
+  pod 'DKImagePickerController'
   # Pods for Service
 
 end

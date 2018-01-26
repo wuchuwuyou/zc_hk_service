@@ -73,12 +73,54 @@ class SENetworkAPI: NSObject {
     public func opinionList(index:Int!,count:Int,status:Int,complete:@escaping (SEResponse) -> Void) {
         let listURL = self.requestURL(cmd: "ComplaintAndAdviceSearchCmd")
         let pageInfos = ["index":index,"number":count,"totalNumber":-1]
-        let property = ["isApp":"1","userAccount":SEModel.shared.loginUser?.username as Any,"status":status] as [String : Any]
+        let property = ["isApp":"1","endTime":"","userAccount":SEModel.shared.loginUser?.username as Any,"status":status] as [String : Any]
         let params = ["pageInfos":pageInfos,"property":property] as [String : Any]
         self.request(url: listURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
             complete(response)
         }
+    }
+    
+    public func repairInfo(complete:@escaping (SEResponse) -> Void) {
+        let infoURL = self.requestURL(cmd: "TemporaryRepairMessageInfosQueryCommand")
+        let property = ["userAccount":SEModel.shared.loginUser?.username]
+        let params = ["property":property]
+        self.request(url: infoURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
 
+    }
+    
+    /// 科室查询
+    public func repairClassInfo(complete:@escaping (SEResponse) -> Void) {
+        let infoURL = self.requestURL(cmd: "TemRepairQueryListCommand")
+        let pages = ["index":-1,"number":-1,"totalNumber":-1]
+        let property = ["hasArea":0,"hasAreaNumber":0,"hasAreaType":0,"hasContent":0,"hasPerson":0,"hasTemRepairOrg":1,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let params = ["pageInfos":pages,"property":property]
+        self.request(url: infoURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+    }
+    
+    /// 报修事件查询
+    public func repairEventInfo(complete:@escaping (SEResponse) -> Void) {
+        let infoURL = self.requestURL(cmd: "TemRepairQueryListCommand")
+        let pages = ["index":-1,"number":-1,"totalNumber":-1]
+        let property = ["hasArea":0,"hasAreaNumber":0,"hasAreaType":0,"hasContent":1,"hasPerson":0,"hasTemRepairOrg":0,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let params = ["pageInfos":pages,"property":property]
+        self.request(url: infoURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+    }
+    
+    /// 报修区域查询
+    public func repairRegionInfo(complete:@escaping (SEResponse) -> Void) {
+        let infoURL = self.requestURL(cmd: "TemRepairQueryListCommand")
+        let pages = ["index":-1,"number":-1,"totalNumber":-1]
+        let property = ["hasArea":1,"hasAreaNumber":1,"hasAreaType":1,"hasContent":0,"hasPerson":0,"hasTemRepairOrg":0,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let params = ["pageInfos":pages,"property":property]
+        self.request(url: infoURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
     }
     
     func handleJSONData(data:Data?) -> Error? {
@@ -96,7 +138,11 @@ class SENetworkAPI: NSObject {
                 if (success?.isEqual("OK"))! {
                     return nil;
                 }else {
-                    return NSError(domain: host, code: -1, userInfo: ["message":"网络错误"])
+                    var msg = "网络错误"
+                    if json.keys.contains("failReason") {
+                        msg = (json["failReason"] as? String)!
+                    }
+                    return NSError(domain: host, code: -1, userInfo: ["message":msg])
 //                    return SEError(code: -1, message: "网络错误", kind: .NetworkError)
                 }
             }else {

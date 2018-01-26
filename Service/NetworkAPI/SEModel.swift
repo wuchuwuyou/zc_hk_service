@@ -76,3 +76,61 @@ struct LoginModel:Codable {
     }
     let DeviceItems:[DeviceItem]
 }
+
+struct ListRespModel:Codable {
+    let resp:respModel?
+    let pageInfos:pagesModel?
+    
+    struct infos:Codable {
+        let item:[ListDataModel]
+    }
+    let infosItem:infos?
+}
+
+
+struct ListDataModel:Codable {
+    let id:Int?
+    let title:String?
+    let content:String?
+    let status:Int?
+}
+
+struct pagesModel:Codable {
+    let index:Int?
+    let number:Int?
+    let totalNumber:Int?
+}
+
+struct respModel:Codable {
+    let responseCommand:String?
+    let failReason:String?
+}
+
+struct RepairInfo:Codable {
+    struct RepairInfoItem:Codable {
+        let buildingNumber:String?
+        let floor:String?
+        let orgId:Int?
+        let orgName:String?
+        let phoneNumber:String?
+    }
+    let resp:respModel?
+
+    let infos:RepairInfoItem?
+}
+
+class RepairOrgItem: NSObject,Codable {
+    var objId:Int? = 0
+    @objc var objName:String? = ""
+}
+
+struct RepairOrgItems:Codable {
+    let resp:respModel?
+    let pageInfos:pagesModel?
+    
+    struct orgInfos:Codable {
+        let orgItems:[RepairOrgItem]
+    }
+    let infos:orgInfos?
+    
+}

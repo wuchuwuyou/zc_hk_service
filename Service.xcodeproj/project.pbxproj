@@ -22,6 +22,12 @@
 		0D625BAE2019F0C100E4227E /* SEMyOpinionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625BAC2019F0C100E4227E /* SEMyOpinionViewController.xib */; };
 		0D625BB12019F12600E4227E /* SEListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625BAF2019F12600E4227E /* SEListTableViewCell.swift */; };
 		0D625BB22019F12600E4227E /* SEListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625BB02019F12600E4227E /* SEListTableViewCell.xib */; };
+		0D625BB6201AFB6300E4227E /* SERepairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625BB4201AFB6300E4227E /* SERepairViewController.swift */; };
+		0D625BB7201AFB6300E4227E /* SERepairViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625BB5201AFB6300E4227E /* SERepairViewController.xib */; };
+		0D625BBA201B2E3D00E4227E /* SEImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D625BB8201B2E3D00E4227E /* SEImageCollectionViewCell.swift */; };
+		0D625BBB201B2E3D00E4227E /* SEImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D625BB9201B2E3D00E4227E /* SEImageCollectionViewCell.xib */; };
+		0D74ED3C201B50B10076BDEB /* SESelectOrgTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D74ED3A201B50B10076BDEB /* SESelectOrgTableViewController.swift */; };
+		0D74ED3D201B50B10076BDEB /* SESelectOrgTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D74ED3B201B50B10076BDEB /* SESelectOrgTableViewController.xib */; };
 		0D8736171FFBBB4500A07CF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8736161FFBBB4500A07CF6 /* AppDelegate.swift */; };
 		0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8736181FFBBB4500A07CF6 /* ViewController.swift */; };
 		0D87361E1FFBBB4500A07CF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D87361D1FFBBB4500A07CF6 /* Assets.xcassets */; };
@@ -59,6 +65,12 @@
 		0D625BAC2019F0C100E4227E /* SEMyOpinionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEMyOpinionViewController.xib; sourceTree = "<group>"; };
 		0D625BAF2019F12600E4227E /* SEListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEListTableViewCell.swift; sourceTree = "<group>"; };
 		0D625BB02019F12600E4227E /* SEListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEListTableViewCell.xib; sourceTree = "<group>"; };
+		0D625BB4201AFB6300E4227E /* SERepairViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERepairViewController.swift; sourceTree = "<group>"; };
+		0D625BB5201AFB6300E4227E /* SERepairViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SERepairViewController.xib; sourceTree = "<group>"; };
+		0D625BB8201B2E3D00E4227E /* SEImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		0D625BB9201B2E3D00E4227E /* SEImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		0D74ED3A201B50B10076BDEB /* SESelectOrgTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SESelectOrgTableViewController.swift; sourceTree = "<group>"; };
+		0D74ED3B201B50B10076BDEB /* SESelectOrgTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SESelectOrgTableViewController.xib; sourceTree = "<group>"; };
 		0D8736131FFBBB4500A07CF6 /* Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Service.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D8736161FFBBB4500A07CF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D8736181FFBBB4500A07CF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +135,19 @@
 			path = "意见反馈";
 			sourceTree = "<group>";
 		};
+		0D625BB3201AF4FF00E4227E /* 报修 */ = {
+			isa = PBXGroup;
+			children = (
+				0D625BB4201AFB6300E4227E /* SERepairViewController.swift */,
+				0D625BB5201AFB6300E4227E /* SERepairViewController.xib */,
+				0D625BB8201B2E3D00E4227E /* SEImageCollectionViewCell.swift */,
+				0D625BB9201B2E3D00E4227E /* SEImageCollectionViewCell.xib */,
+				0D74ED3A201B50B10076BDEB /* SESelectOrgTableViewController.swift */,
+				0D74ED3B201B50B10076BDEB /* SESelectOrgTableViewController.xib */,
+			);
+			path = "报修";
+			sourceTree = "<group>";
+		};
 		0D87360A1FFBBB4500A07CF6 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +170,7 @@
 		0D8736151FFBBB4500A07CF6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				0D625BB3201AF4FF00E4227E /* 报修 */,
 				0D625B6A2017568900E4227E /* Tool */,
 				0D625B6720174C9A00E4227E /* NetworkAPI */,
 				0D873646200214F900A07CF6 /* Other */,
@@ -307,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D625BBB201B2E3D00E4227E /* SEImageCollectionViewCell.xib in Resources */,
 				0D27E4DC2018E26500BD9D6D /* SESettingHostTableViewCell.xib in Resources */,
 				0D8736351FFBCC0500A07CF6 /* SELoginUserTableViewController.xib in Resources */,
 				0D8736211FFBBB4500A07CF6 /* LaunchScreen.storyboard in Resources */,
@@ -316,7 +343,9 @@
 				0D87361E1FFBBB4500A07CF6 /* Assets.xcassets in Resources */,
 				0D625BAE2019F0C100E4227E /* SEMyOpinionViewController.xib in Resources */,
 				0D8736412002148A00A07CF6 /* SESettingTableViewController.xib in Resources */,
+				0D74ED3D201B50B10076BDEB /* SESelectOrgTableViewController.xib in Resources */,
 				0D8736301FFBBC2200A07CF6 /* SELoginViewController.xib in Resources */,
+				0D625BB7201AFB6300E4227E /* SERepairViewController.xib in Resources */,
 				0D87364C2002182400A07CF6 /* SEMainViewController.xib in Resources */,
 				0D625B98201890FC00E4227E /* SEMainCollectionViewCell.xib in Resources */,
 				0D87363A1FFBCD6600A07CF6 /* SESettingHostViewController.xib in Resources */,
@@ -379,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D625BB6201AFB6300E4227E /* SERepairViewController.swift in Sources */,
 				0D8736391FFBCD6600A07CF6 /* SESettingHostViewController.swift in Sources */,
 				0D625BB12019F12600E4227E /* SEListTableViewCell.swift in Sources */,
 				0D87364B2002182400A07CF6 /* SEMainViewController.swift in Sources */,
@@ -386,8 +416,10 @@
 				0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */,
 				0D625BA52019C6E200E4227E /* SEOpinionViewController.swift in Sources */,
 				0D625B97201890FC00E4227E /* SEMainCollectionViewCell.swift in Sources */,
+				0D625BBA201B2E3D00E4227E /* SEImageCollectionViewCell.swift in Sources */,
 				0D8736482002151F00A07CF6 /* SETabBarViewController.swift in Sources */,
 				0D8736402002148A00A07CF6 /* SESettingTableViewController.swift in Sources */,
+				0D74ED3C201B50B10076BDEB /* SESelectOrgTableViewController.swift in Sources */,
 				0D625B6C2017569C00E4227E /* SETools.swift in Sources */,
 				0D87362F1FFBBC2200A07CF6 /* SELoginViewController.swift in Sources */,
 				0D8736341FFBCC0500A07CF6 /* SELoginUserTableViewController.swift in Sources */,
@@ -525,6 +557,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4A291D1437753C081937907D /* Pods-Service.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -544,6 +577,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC9E2AD7867D0EA95B2B4595 /* Pods-Service.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
