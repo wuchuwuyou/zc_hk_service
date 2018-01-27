@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SERepairViewController" customModule="Service" customModuleProvider="target">
             <connections>
                 <outlet property="areaBtn" destination="7mD-if-fxm" id="lBZ-z0-StP"/>
+                <outlet property="areaPickerView" destination="VDu-EJ-S1n" id="qlA-54-w34"/>
                 <outlet property="buildBtn" destination="ehg-eT-aPB" id="dvM-H2-mu6"/>
                 <outlet property="collectionView" destination="Yeb-gD-rRQ" id="d26-yp-qXR"/>
                 <outlet property="collectionViewHeight" destination="44A-U2-v4u" id="yLg-YH-xWF"/>
@@ -21,6 +22,7 @@
                 <outlet property="contentTextView" destination="kRi-2m-sHf" id="ePf-cg-TV4"/>
                 <outlet property="floorBtn" destination="KKT-au-23n" id="lJn-oJ-hlD"/>
                 <outlet property="locationTextField" destination="h5f-8Z-bPx" id="hKd-me-jB5"/>
+                <outlet property="pickerView" destination="ovY-hI-8eZ" id="ndH-vS-J0K"/>
                 <outlet property="repairEventBtn" destination="URw-GL-rP3" id="aW4-gG-uSB"/>
                 <outlet property="submitBtn" destination="eFK-Dd-iCC" id="OEu-km-aHQ"/>
                 <outlet property="titleLabel" destination="D6B-xA-b0Y" id="snY-9x-2FH"/>
@@ -30,11 +32,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="878"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k3o-iQ-TbI">
-                    <rect key="frame" x="0.0" y="20" width="375" height="858"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ani-SJ-YsN">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
@@ -130,6 +132,9 @@
                                         <constraint firstAttribute="height" constant="30" id="Z0e-yK-NcV"/>
                                     </constraints>
                                     <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="eventAction:" destination="-1" eventType="touchUpInside" id="jon-st-4uj"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -279,13 +284,50 @@
                         <constraint firstAttribute="bottom" secondItem="eFK-Dd-iCC" secondAttribute="bottom" constant="10" id="wLv-9e-chy"/>
                     </constraints>
                 </scrollView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDu-EJ-S1n">
+                    <rect key="frame" x="0.0" y="407" width="375" height="260"/>
+                    <subviews>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fsC-71-Sz1">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <items>
+                                <barButtonItem systemItem="cancel" id="P1H-BJ-p12">
+                                    <connections>
+                                        <action selector="pickerViewCancel:" destination="-1" id="ZBA-fb-Z6d"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="FFU-HC-tPK"/>
+                                <barButtonItem systemItem="done" id="q1G-CD-NS8">
+                                    <connections>
+                                        <action selector="pickerViewDone:" destination="-1" id="rSE-Uw-vDy"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovY-hI-8eZ">
+                            <rect key="frame" x="0.0" y="44" width="375" height="216"/>
+                        </pickerView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ovY-hI-8eZ" secondAttribute="bottom" id="3Py-qx-Y3Z"/>
+                        <constraint firstAttribute="height" constant="260" id="9c2-DC-FFk"/>
+                        <constraint firstItem="fsC-71-Sz1" firstAttribute="leading" secondItem="VDu-EJ-S1n" secondAttribute="leading" id="Hqt-kK-XiD"/>
+                        <constraint firstAttribute="trailing" secondItem="fsC-71-Sz1" secondAttribute="trailing" id="Md4-kW-ysr"/>
+                        <constraint firstAttribute="trailing" secondItem="ovY-hI-8eZ" secondAttribute="trailing" id="cx2-uj-bdi"/>
+                        <constraint firstItem="ovY-hI-8eZ" firstAttribute="leading" secondItem="VDu-EJ-S1n" secondAttribute="leading" id="sWp-6L-cfh"/>
+                        <constraint firstItem="fsC-71-Sz1" firstAttribute="top" secondItem="VDu-EJ-S1n" secondAttribute="top" id="z3z-HI-fDu"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="k3o-iQ-TbI" secondAttribute="bottom" id="6wT-z9-WuH"/>
+                <constraint firstItem="VDu-EJ-S1n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HhS-G6-NTY"/>
                 <constraint firstItem="k3o-iQ-TbI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ONA-Q5-RvR"/>
                 <constraint firstItem="k3o-iQ-TbI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="OyQ-0K-32m"/>
+                <constraint firstAttribute="trailing" secondItem="VDu-EJ-S1n" secondAttribute="trailing" id="bA5-Yj-yrd"/>
                 <constraint firstItem="Ani-SJ-YsN" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="j8c-g8-U8C"/>
+                <constraint firstAttribute="bottom" secondItem="VDu-EJ-S1n" secondAttribute="bottom" id="lJz-aF-Hb4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="k3o-iQ-TbI" secondAttribute="trailing" id="wZh-5X-npV"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import DKImagePickerController
 
 
 //struct SEError: Error {
@@ -121,6 +122,54 @@ class SENetworkAPI: NSObject {
         self.request(url: infoURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
             complete(response)
         }
+    }
+    /*
+     * content 报修内容 B区3层公共  测试
+     * number 报修编号 （当前时间：yyyyMMddHHmmss）
+     * orgId 报修科室ID
+     * phone 提交维修人手机号
+    */
+    public func addRepairReport(content:String,number:String,orgId:Int,phone:String, complete:@escaping (SEResponse) -> Void) {
+        let report = self.requestURL(cmd: "TemporaryRepairAddCommand")
+        let item = ["maintainContent":"","maintainTime":"","repairContent":content,"repairFeedback":"","repairNumber":number,"repairOrgId":orgId,"repairOrgName":"","repairStatus":0,"repairTime":"","repairTypeId":-1,"repairTypeName":"","repairUser":"","repairUserPhone":phone,"unFinishedReason":""] as [String : Any]
+        let property = ["status":-1,"userAccount":SEModel.shared.loginUser?.username as Any]
+        let params = ["infos":["items":[item]],"property":property]
+        
+        self.request(url: report, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+
+    }
+
+    public func uploadImages(number:String,images:[UIImage],complete:@escaping (SEResponse) -> Void) {
+        let upload_image_url = self.requestURL(cmd: "TemporaryRepairFileUploadCommand")
+        
+        Alamofire.upload(multipartFormData: { (formData) in
+            formData.append(number.data(using: .utf8)!, withName: "repairNumber")
+            for image in images {
+                let data = UIImageJPEGRepresentation(image, 0.9)
+                formData.append(data!, withName: "img", fileName: String(format: "%d", image.hashValue), mimeType: "image/jpeg")
+            }
+        }, to: upload_image_url) { (encodingResult) in
+            switch encodingResult {
+                
+                case .success(let request, let streamingFromDisk, let streamFileURL):
+                    //连接服务器成功后，对json的处理
+                    request.responseJSON { response in
+                        //解包
+                        guard let result = response.result.value else { return }
+                        print("json:\(result)")
+                    }
+                    //获取上传进度
+                    request.uploadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                        print("图片上传进度: \(progress.fractionCompleted)")
+                }
+                case .failure(let encodingError):
+                    print(encodingError)
+            }
+        }
+        
+      
     }
     
     func handleJSONData(data:Data?) -> Error? {

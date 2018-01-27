@@ -107,6 +107,7 @@ struct respModel:Codable {
 }
 
 struct RepairInfo:Codable {
+    
     struct RepairInfoItem:Codable {
         let buildingNumber:String?
         let floor:String?
@@ -122,6 +123,10 @@ struct RepairInfo:Codable {
 class RepairOrgItem: NSObject,Codable {
     var objId:Int? = 0
     @objc var objName:String? = ""
+    init(objId:Int,objName:String) {
+        self.objId = objId
+        self.objName = objName
+    }
 }
 
 struct RepairOrgItems:Codable {
@@ -133,4 +138,29 @@ struct RepairOrgItems:Codable {
     }
     let infos:orgInfos?
     
+}
+
+struct RepairEventItems:Codable {
+    let resp:respModel?
+    let pageInfos:pagesModel?
+    struct orgInfos:Codable {
+        let contentItems:[RepairOrgItem]
+    }
+    let infos:orgInfos?
+}
+
+struct RepairAreaInfo:Codable {
+    let resp:respModel?
+    let pageInfos:pagesModel?
+    let infos:areaInfo?
+    
+    struct areaInfo:Codable {
+        let areaTypeItems:[RepairOrgItem]?
+        let areaItems:[RepairAreaItem]?
+    }
+}
+struct RepairAreaItem:Codable {
+    let items:[RepairOrgItem]?
+    var objId:Int? = 0
+    var objName:String? = ""
 }

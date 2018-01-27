@@ -11,7 +11,7 @@ import SVProgressHUD
 
 
 protocol SelectOrgItemDelegate {
-    func selectOrigItem(orgItem:RepairOrgItem)
+    func selectOrgItem(orgItem:RepairOrgItem)
 }
 
 class SESelectOrgTableViewController: UITableViewController {
@@ -107,7 +107,7 @@ class SESelectOrgTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = sections[indexPath.section][indexPath.row] as? RepairOrgItem
 //        self.delegate?.selectUser(user: model!)
-        self.delegate?.selectOrigItem(orgItem: model!)
+        self.delegate?.selectOrgItem(orgItem: model!)
         self.navigationController?.popViewController(animated: true)
     }
 
