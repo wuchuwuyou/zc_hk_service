@@ -19,7 +19,7 @@ class SESettingHostViewController: UIViewController,UITextFieldDelegate,SelectHo
         // Do any additional setup after loading the view.
         self.hostTextField.delegate = self
         let host = HostUserDefaults.currentHost()
-        if (host.host.isEmpty != nil && host.port.isEmpty != nil){
+        if (host.host.isEmpty != true && host.port.isEmpty != true){
             self.hostTextField.text = host.stringText()
         }
     }

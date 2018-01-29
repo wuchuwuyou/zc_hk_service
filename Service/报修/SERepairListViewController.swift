@@ -1,8 +1,8 @@
 //
-//  SEMyOpinionViewController.swift
+//  SERepairListViewController.swift
 //  Service
 //
-//  Created by Murphy on 25/01/2018.
+//  Created by Murphy on 29/01/2018.
 //  Copyright © 2018 Murphy. All rights reserved.
 //
 
@@ -11,22 +11,24 @@ import HMSegmentedControl
 import MJRefresh
 import SVProgressHUD
 
-class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+
+class SERepairListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var segmentedControl:HMSegmentedControl?
     
-    var dataArray:[ListDataModel] = []
-    
-    @IBOutlet weak var topView: UIView!
+    var dataArray:[RepairListItem] = []
+
     @IBOutlet weak var tableView: UITableView!
     
-    var index = 1
+    @IBOutlet weak var topView: UIView!
+    
     var status = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.segmentedControl = HMSegmentedControl(sectionTitles: ["已解决","未解决"])
+        self.segmentedControl = HMSegmentedControl(sectionTitles: ["未处理","已确认","已反馈"])
         self.segmentedControl?.setSelectedSegmentIndex(0, animated: true)
         self.segmentedControl?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40)
         self.segmentedControl?.selectionStyle = .fullWidthStripe
@@ -37,7 +39,7 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
         self.segmentedControl?.selectedTitleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         
         self.segmentedControl?.addTarget(self, action: #selector(segmentedChange(control:)), for: UIControlEvents.valueChanged)
-
+        
         self.topView.addSubview(self.segmentedControl!)
         
         self.tableView.register(UINib(nibName: "SEListTableViewCell", bundle: nil), forCellReuseIdentifier: "SEListTableViewCell")
@@ -47,40 +49,32 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
             self.refresh()
         }
         self.tableView.mj_header = header
-        let footer = MJRefreshAutoNormalFooter {
-            self.loadMore()
-        }
-        self.tableView.mj_footer = footer
         
         self.tableView.mj_header.beginRefreshing()
     }
-
     @objc func segmentedChange(control:HMSegmentedControl) {
         
         if control.selectedSegmentIndex == 0 {
-//            已解决
-            index = 1
+            // 未处理
+
             status = 0
         }else if control.selectedSegmentIndex == 1 {
-//            未解决
-            index = 1
-            status = 1
+            // 已确认
+            status = 4
+        }else if control.selectedSegmentIndex == 2 {
+            // 已反馈
+            status = 2
         }
-        self.refresh()
+        self.tableView.mj_header.beginRefreshing()
     }
     func refresh() {
-        self.loadData(status: status, index: index)
+        self.requestList(status: status)
     }
-    func loadMore() {
-        index = index+1
-        self.loadData(status: status, index: index)
-    }
-    func loadData(status:Int,index:Int) {
-        SENetworkAPI.sharedInstance.opinionList(index: index, count: 20, status: status) { (response) in
-            self.tableView.mj_header.endRefreshing()
-            self.tableView.mj_footer.endRefreshing()
-            
 
+    func requestList(status:Int) {
+        SENetworkAPI.sharedInstance.repairList(status: status) { (response) in
+            self.tableView.mj_header.endRefreshing()
+            
             if response.error != nil {
                 let error = response.error
                 var msg = error?.localizedDescription
@@ -92,16 +86,8 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
                 SVProgressHUD.showError(withStatus: msg)
             }else {
                 let decoder = JSONDecoder()
-                let model = try! decoder.decode(ListRespModel.self, from: response.response!)
-                self.index = (model.pageInfos?.index)!
-
-                if(index == 1) {
-                    self.dataArray = (model.infosItem?.item)!
-                }else {
-                    let array = model.infosItem?.item
-                    self.dataArray = self.dataArray + array!
-                }
-                
+                let model = try! decoder.decode(RepairListResponse.self, from: response.response!)
+                self.dataArray = (model.infos?.items)!
                 self.tableView.reloadData()
             }
         }
@@ -113,8 +99,61 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SEListTableViewCell", for: indexPath)
         let item = self.dataArray[indexPath.row]
-        cell.textLabel?.text = item.content
+        cell.textLabel?.text = item.repairContent
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (status == 4) {
+            let item = self.dataArray[indexPath.row]
+            self.showFeedback(item: item)
+        }
+    }
+    func showFeedback(item:RepairListItem) {
+        
+        let action1 = UIAlertAction(title: "满意", style: .default) { (action) in
+            self.requestFeedback(item: item, feedback: action.title)
+        }
+        let action2 = UIAlertAction(title: "不满意", style: .default) { (action) in
+            self.requestFeedback(item: item, feedback: action.title)
+        }
+        let action3 = UIAlertAction(title: "一般", style: .default) { (action) in
+            self.requestFeedback(item: item, feedback: action.title)
+        }
+        let action4 = UIAlertAction(title: "取消", style: .cancel) { (action) in
+            
+        }
+        let alert = UIAlertController(title: "反馈", message: "请选择反馈内容", preferredStyle: .actionSheet)
+        alert.addAction(action1)
+        alert.addAction(action2)
+        alert.addAction(action3)
+        alert.addAction(action4)
+        
+        self.present(alert, animated: true) {
+            
+        }
+    }
+    
+    func requestFeedback(item:RepairListItem,feedback:String?) {
+        if feedback?.isEmpty == true {
+            return;
+        }
+        SVProgressHUD.show()
+        SENetworkAPI.sharedInstance.repairReportFeedback(item: item, feedback: feedback!) { (response) in
+            if response.error != nil {
+                let error = response.error
+                var msg = error?.localizedDescription
+                if (error?.userInfo != nil) {
+                    if(error?.userInfo.keys.contains("message"))! {
+                        msg = (error?.userInfo["message"] as! String)
+                    }
+                }
+                SVProgressHUD.showError(withStatus: msg)
+            }else {
+                SVProgressHUD.dismiss()
+                self.tableView.mj_header.beginRefreshing()
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

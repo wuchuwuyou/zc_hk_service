@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 struct HostModel:Codable {
     var host:String
@@ -183,4 +184,37 @@ extension String {
 
 extension Data {
    
+}
+
+extension UIColor {
+    class func AppColor()-> UIColor {
+        //[UIColor colorWithRed:0.059 green:0.310 blue:0.478 alpha:1.00]
+        return UIColor(red: 0.059, green: 0.310, blue: 0.478, alpha: 1.00)
+    }
+    
+    class func bgColor() -> UIColor {
+//        [UIColor colorWithRed:0.980 green:0.980 blue:0.980 alpha:1.00]
+        return UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.00)
+    }
+    class func buttonColor() -> UIColor {
+        // [UIColor colorWithRed:0.992 green:0.651 blue:0.267 alpha:1.00]
+        return UIColor(red: 0.992, green: 0.651, blue: 0.267, alpha: 1.00)
+    }
+}
+
+extension UIImage {
+    class func imageWithColor(color:UIColor) ->UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1);
+        UIGraphicsBeginImageContext(rect.size);
+        let context = UIGraphicsGetCurrentContext();
+        
+        context!.setFillColor(color.cgColor);
+
+        context?.addRect(rect)
+
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return image!
+    }
 }

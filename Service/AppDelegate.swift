@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 //        let tabBarController = SETabBarViewController()
         IQKeyboardManager.sharedManager().enable = true
-        let loginController = UINavigationController(rootViewController: SELoginViewController())
-        
+        let loginController = SENavigationViewController(rootViewController: SELoginViewController(nibName: "SELoginViewController", bundle: nil))
         window = UIWindow(frame: UIScreen.main.bounds)
         
         window?.rootViewController = loginController
         window?.makeKeyAndVisible()
+        
         self.settingHost()
         return true
     }

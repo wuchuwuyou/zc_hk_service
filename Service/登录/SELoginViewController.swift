@@ -9,7 +9,7 @@
 import UIKit
 import SVProgressHUD
 
-class SELoginViewController: UIViewController,SelectUserDelegate {
+class SELoginViewController: UIViewController,SelectUserDelegate,UITextFieldDelegate {
 
     @IBOutlet weak var logTitleLabel: UILabel!
     @IBOutlet weak var logImageView: UIImageView!
@@ -27,6 +27,30 @@ class SELoginViewController: UIViewController,SelectUserDelegate {
         self.severIPLabel.text = "重新设置IP及端口号"
         self.ipSettingBtn.setTitle("去设置", for: .normal)
         self.loginBtn.setTitle("登录", for: .normal)
+        self.loginBtn.setTitleColor(UIColor.white, for: .normal)
+        self.loginBtn.backgroundColor = UIColor.AppColor()
+        self.loginBtn.layer.cornerRadius = 3
+        self.view.backgroundColor = UIColor.bgColor()
+        
+        self.accountTextField.layer.borderWidth = 1
+        self.accountTextField.layer.borderColor = UIColor.black.cgColor
+        self.accountTextField.layer.cornerRadius = 3
+        
+        self.passwordTextField.layer.borderWidth = 1
+        self.passwordTextField.layer.borderColor = UIColor.black.cgColor
+        self.accountTextField.layer.cornerRadius = 3
+        
+        let left_view_1 = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 44))
+        let left_view_2 = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 44))
+        self.accountTextField.leftView = left_view_1
+        self.accountTextField.leftViewMode = .always
+//
+        self.passwordTextField.leftView = left_view_2
+        self.passwordTextField.leftViewMode = .always
+//
+        self.accountTextField.delegate = self
+        self.passwordTextField.delegate = self
+        
         self.accountTextField.placeholder = "请输入账号"
         self.passwordTextField.placeholder = "请输入密码"
         #if DEBUG
@@ -34,7 +58,21 @@ class SELoginViewController: UIViewController,SelectUserDelegate {
             self.passwordTextField.text = "123"
         #endif
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.buttonColor().cgColor
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,6 +107,7 @@ class SELoginViewController: UIViewController,SelectUserDelegate {
         self.accountTextField.text = user.username
         self.passwordTextField.text = user.password
     }
+    
     func handleAccountAndPwd(ac:String,pwd:String) -> Void {
         if ac.isEmpty {
             SVProgressHUD.showInfo(withStatus: "请输入登录账号")

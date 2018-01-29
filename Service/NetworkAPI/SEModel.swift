@@ -164,3 +164,37 @@ struct RepairAreaItem:Codable {
     var objId:Int? = 0
     var objName:String? = ""
 }
+
+
+struct RepairListResponse:Codable {
+    let resp:respModel?
+    struct Items:Codable {
+        let items:[RepairListItem]?
+    }
+    let infos:Items?
+}
+
+struct RepairListItem:Codable {
+    struct RequisitionItem:Codable {
+        let applicationContent:String?
+        let applicationTime:String?
+        let applicationUser:String?
+        let status:Int?
+    }
+    let materialRequisitionItems:[RequisitionItem]?
+    
+    let maintainTime:String?
+    let maintainContent:String?
+    let repairContent:String?
+    let repairFeedback:String?
+    let repairNumber:String?
+    let repairOrgId:Int?
+    let repairOrgName:String?
+    let repairStatus:Int?
+    let repairTime:String?
+    let repairTypeId:Int?
+    let repairTypeName:String?
+    let repairUser:String?
+    let repairUserPhone:String?
+    let unFinishedReason:String?
+}

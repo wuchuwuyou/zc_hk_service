@@ -140,7 +140,31 @@ class SENetworkAPI: NSObject {
         }
 
     }
+    /*
+     * status：报修单状态值（0-未处理  3-已分派 5—已接单 1-已维修 4-已确认 2-已反馈）
+     */
+    public func repairList(status:Int,complete:@escaping (SEResponse) -> Void) {
+        let list = self.requestURL(cmd: "TemporaryRepairSearchCommand")
+        let property = ["status":status,"userAccount":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let params = ["property":property]
+        
+        self.request(url: list, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+    }
+    /// feedback  反馈内容
+    public func repairReportFeedback(item:RepairListItem,feedback:String,complete:@escaping (SEResponse) -> Void) {
+        let feedbackURL = self.requestURL(cmd: "TemporaryRepairUpdateCommand")
+        let item = ["maintainContent":item.maintainContent!,"maintainTime":item.maintainTime as Any,"repairContent":item.repairContent!,"repairFeedback":feedback,"repairNumber":item.repairNumber as Any, "repairOrgId":item.repairOrgId as Any,"repairOrgName":item.repairOrgName as Any,"repairStatus":1,"repairTime":item.repairTime!,"repairTypeId":item.repairTypeId!,"repairTypeName":item.repairTypeName as Any,"repairUser":"","repairUserPhone":"","unFinishedReason":""] as [String : Any]
+        let property = ["status":3,"userAccount":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let params = ["property":property,"infos":["items":[item]]]
+        
+        self.request(url: feedbackURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
 
+    }
+    
     public func uploadImages(number:String,images:[UIImage],complete:@escaping (SEResponse) -> Void) {
         let upload_image_url = self.requestURL(cmd: "TemporaryRepairFileUploadCommand")
         

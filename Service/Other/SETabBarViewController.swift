@@ -22,13 +22,13 @@ class SETabBarViewController: UITabBarController {
         let set_vc = SESettingTableViewController(nibName: "SESettingTableViewController", bundle: nil);
         let per_vc = SEPersonalTableViewController(nibName: "SEPersonalTableViewController", bundle: nil);
         
-        let nav_main = UINavigationController(rootViewController: main_vc)
+        let nav_main = SENavigationViewController(rootViewController: main_vc)
     
         
-        let nav_set = UINavigationController(rootViewController: set_vc)
+        let nav_set = SENavigationViewController(rootViewController: set_vc)
         
         
-        let nav_per = UINavigationController(rootViewController: per_vc)
+        let nav_per = SENavigationViewController(rootViewController: per_vc)
         
         
         nav_main.tabBarItem = main_item;

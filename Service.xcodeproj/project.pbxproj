@@ -30,6 +30,9 @@
 		0D74ED3D201B50B10076BDEB /* SESelectOrgTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D74ED3B201B50B10076BDEB /* SESelectOrgTableViewController.xib */; };
 		0D74ED44201C2C690076BDEB /* SERepairEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D74ED42201C2C690076BDEB /* SERepairEventViewController.swift */; };
 		0D74ED45201C2C690076BDEB /* SERepairEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D74ED43201C2C690076BDEB /* SERepairEventViewController.xib */; };
+		0D74ED48201ECF230076BDEB /* SERepairListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D74ED46201ECF230076BDEB /* SERepairListViewController.swift */; };
+		0D74ED49201ECF230076BDEB /* SERepairListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D74ED47201ECF230076BDEB /* SERepairListViewController.xib */; };
+		0D74ED4B201F1B560076BDEB /* SENavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D74ED4A201F1B560076BDEB /* SENavigationViewController.swift */; };
 		0D8736171FFBBB4500A07CF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8736161FFBBB4500A07CF6 /* AppDelegate.swift */; };
 		0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8736181FFBBB4500A07CF6 /* ViewController.swift */; };
 		0D87361E1FFBBB4500A07CF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D87361D1FFBBB4500A07CF6 /* Assets.xcassets */; };
@@ -75,6 +78,9 @@
 		0D74ED3B201B50B10076BDEB /* SESelectOrgTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SESelectOrgTableViewController.xib; sourceTree = "<group>"; };
 		0D74ED42201C2C690076BDEB /* SERepairEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERepairEventViewController.swift; sourceTree = "<group>"; };
 		0D74ED43201C2C690076BDEB /* SERepairEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SERepairEventViewController.xib; sourceTree = "<group>"; };
+		0D74ED46201ECF230076BDEB /* SERepairListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERepairListViewController.swift; sourceTree = "<group>"; };
+		0D74ED47201ECF230076BDEB /* SERepairListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SERepairListViewController.xib; sourceTree = "<group>"; };
+		0D74ED4A201F1B560076BDEB /* SENavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SENavigationViewController.swift; sourceTree = "<group>"; };
 		0D8736131FFBBB4500A07CF6 /* Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Service.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D8736161FFBBB4500A07CF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D8736181FFBBB4500A07CF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +150,8 @@
 			children = (
 				0D625BB4201AFB6300E4227E /* SERepairViewController.swift */,
 				0D625BB5201AFB6300E4227E /* SERepairViewController.xib */,
+				0D74ED46201ECF230076BDEB /* SERepairListViewController.swift */,
+				0D74ED47201ECF230076BDEB /* SERepairListViewController.xib */,
 				0D625BB8201B2E3D00E4227E /* SEImageCollectionViewCell.swift */,
 				0D625BB9201B2E3D00E4227E /* SEImageCollectionViewCell.xib */,
 				0D74ED3A201B50B10076BDEB /* SESelectOrgTableViewController.swift */,
@@ -254,6 +262,7 @@
 				0D8736472002151F00A07CF6 /* SETabBarViewController.swift */,
 				0D625BAF2019F12600E4227E /* SEListTableViewCell.swift */,
 				0D625BB02019F12600E4227E /* SEListTableViewCell.xib */,
+				0D74ED4A201F1B560076BDEB /* SENavigationViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -348,6 +357,7 @@
 				0D74ED45201C2C690076BDEB /* SERepairEventViewController.xib in Resources */,
 				0D8736502002189300A07CF6 /* SEPersonalTableViewController.xib in Resources */,
 				0D87361E1FFBBB4500A07CF6 /* Assets.xcassets in Resources */,
+				0D74ED49201ECF230076BDEB /* SERepairListViewController.xib in Resources */,
 				0D625BAE2019F0C100E4227E /* SEMyOpinionViewController.xib in Resources */,
 				0D8736412002148A00A07CF6 /* SESettingTableViewController.xib in Resources */,
 				0D74ED3D201B50B10076BDEB /* SESelectOrgTableViewController.xib in Resources */,
@@ -423,9 +433,11 @@
 				0D27E4DB2018E26500BD9D6D /* SESettingHostTableViewCell.swift in Sources */,
 				0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */,
 				0D625BA52019C6E200E4227E /* SEOpinionViewController.swift in Sources */,
+				0D74ED48201ECF230076BDEB /* SERepairListViewController.swift in Sources */,
 				0D625B97201890FC00E4227E /* SEMainCollectionViewCell.swift in Sources */,
 				0D625BBA201B2E3D00E4227E /* SEImageCollectionViewCell.swift in Sources */,
 				0D8736482002151F00A07CF6 /* SETabBarViewController.swift in Sources */,
+				0D74ED4B201F1B560076BDEB /* SENavigationViewController.swift in Sources */,
 				0D8736402002148A00A07CF6 /* SESettingTableViewController.swift in Sources */,
 				0D74ED3C201B50B10076BDEB /* SESelectOrgTableViewController.swift in Sources */,
 				0D625B6C2017569C00E4227E /* SETools.swift in Sources */,

@@ -138,7 +138,8 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
     
     
     @objc func showMyRepair() {
-
+        let list = SERepairListViewController(nibName: "SERepairListViewController", bundle: nil)
+        self.navigationController?.pushViewController(list, animated: true)
     }
     
     func requestRepairArea() {
@@ -408,12 +409,12 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
                 SVProgressHUD.showError(withStatus: response.error?.localizedDescription)
                 return;
             }
-            let image_count = self.imageDataArray?.count
-            if(image_count! > 0) {
-                self.uploadImage(time: time)
-            }else {
+//            let image_count = self.imageDataArray?.count
+//            if(image_count! > 0) {
+//                self.uploadImage(time: time)
+//            }else {
                 SVProgressHUD.showSuccess(withStatus: "上传成功")
-            }
+//            }
         }
     }
     func uploadImage(time:String) {
