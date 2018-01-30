@@ -17,6 +17,7 @@ class SESettingHostViewController: UIViewController,UITextFieldDelegate,SelectHo
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "设置"
         self.hostTextField.delegate = self
         let host = HostUserDefaults.currentHost()
         if (host.host.isEmpty != true && host.port.isEmpty != true){

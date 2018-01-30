@@ -136,10 +136,23 @@ class SELoginViewController: UIViewController,SelectUserDelegate,UITextFieldDele
             SEModel.shared.loginModel = login_model
             SEModel.shared.loginUser = LoginUser.initWithInfo(username: ac, password: pwd, name: (SEModel.shared.loginModel?.userName)!)
             LoginUserDefaults.addLoginUser(info: SEModel.shared.loginUser!)
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let tab = SETabBarViewController()
-            appDelegate.window?.rootViewController = tab
-            SVProgressHUD.dismiss()
+            
+            SENetworkAPI.sharedInstance.menuList(ac: ac, complete: { (resp) in
+                if resp.error != nil {
+                    
+                    SVProgressHUD.showError(withStatus: resp.error?.localizedDescription)
+                    return;
+                }
+                let decoder = JSONDecoder()
+                let menu = try! decoder.decode(SEMenuResp.self, from: resp.response!)
+                SEModel.shared.menu = menu.menus
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                let tab = SETabBarViewController()
+                appDelegate.window?.rootViewController = tab
+                SVProgressHUD.dismiss()
+
+            })
+            
         }
     }
     /*

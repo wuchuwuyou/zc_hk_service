@@ -7,6 +7,7 @@ PODS:
   - DKImagePickerController/ImageManager (3.8.1)
   - HMSegmentedControl (1.5.4)
   - IQKeyboardManagerSwift (5.0.4)
+  - Kingfisher (4.1.1)
   - MJRefresh (3.1.14.1)
   - SVProgressHUD (2.2.2)
 
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - DKImagePickerController
   - HMSegmentedControl
   - IQKeyboardManagerSwift
+  - Kingfisher
   - MJRefresh
   - SVProgressHUD
 
@@ -23,9 +25,10 @@ SPEC CHECKSUMS:
   DKImagePickerController: 51ad6ee2ba05414bb741db54a72cd7f4fb178e34
   HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
   IQKeyboardManagerSwift: a0592bb636b10a9a1cf75d2b2c61144226226c84
+  Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
   MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
 
-PODFILE CHECKSUM: 0a930853f68c2c9cb2b88a3f6699b91c3990bb21
+PODFILE CHECKSUM: e5b861b6e984160163c7ae1eb432ce230475e4a3
 
 COCOAPODS: 1.1.1

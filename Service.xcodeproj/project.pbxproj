@@ -33,6 +33,16 @@
 		0D74ED48201ECF230076BDEB /* SERepairListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D74ED46201ECF230076BDEB /* SERepairListViewController.swift */; };
 		0D74ED49201ECF230076BDEB /* SERepairListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D74ED47201ECF230076BDEB /* SERepairListViewController.xib */; };
 		0D74ED4B201F1B560076BDEB /* SENavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D74ED4A201F1B560076BDEB /* SENavigationViewController.swift */; };
+		0D784D7C202056900047965D /* SEMyOpinionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D784D7A202056900047965D /* SEMyOpinionTableViewCell.swift */; };
+		0D784D7D202056900047965D /* SEMyOpinionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D784D7B202056900047965D /* SEMyOpinionTableViewCell.xib */; };
+		0D784D80202057DD0047965D /* SEMyRepairTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D784D7E202057DD0047965D /* SEMyRepairTableViewCell.swift */; };
+		0D784D81202057DD0047965D /* SEMyRepairTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D784D7F202057DD0047965D /* SEMyRepairTableViewCell.xib */; };
+		0D784D84202060DB0047965D /* SEAppSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D784D82202060DB0047965D /* SEAppSettingTableViewController.swift */; };
+		0D784D85202060DB0047965D /* SEAppSettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D784D83202060DB0047965D /* SEAppSettingTableViewController.xib */; };
+		0D784D88202068F30047965D /* SEAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D784D86202068F30047965D /* SEAboutViewController.swift */; };
+		0D784D89202068F30047965D /* SEAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D784D87202068F30047965D /* SEAboutViewController.xib */; };
+		0D784D8C2020777E0047965D /* SEPersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D784D8A2020777E0047965D /* SEPersonalInfoViewController.swift */; };
+		0D784D8D2020777E0047965D /* SEPersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D784D8B2020777E0047965D /* SEPersonalInfoViewController.xib */; };
 		0D8736171FFBBB4500A07CF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8736161FFBBB4500A07CF6 /* AppDelegate.swift */; };
 		0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8736181FFBBB4500A07CF6 /* ViewController.swift */; };
 		0D87361E1FFBBB4500A07CF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D87361D1FFBBB4500A07CF6 /* Assets.xcassets */; };
@@ -81,6 +91,16 @@
 		0D74ED46201ECF230076BDEB /* SERepairListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SERepairListViewController.swift; sourceTree = "<group>"; };
 		0D74ED47201ECF230076BDEB /* SERepairListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SERepairListViewController.xib; sourceTree = "<group>"; };
 		0D74ED4A201F1B560076BDEB /* SENavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SENavigationViewController.swift; sourceTree = "<group>"; };
+		0D784D7A202056900047965D /* SEMyOpinionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEMyOpinionTableViewCell.swift; sourceTree = "<group>"; };
+		0D784D7B202056900047965D /* SEMyOpinionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEMyOpinionTableViewCell.xib; sourceTree = "<group>"; };
+		0D784D7E202057DD0047965D /* SEMyRepairTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEMyRepairTableViewCell.swift; sourceTree = "<group>"; };
+		0D784D7F202057DD0047965D /* SEMyRepairTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEMyRepairTableViewCell.xib; sourceTree = "<group>"; };
+		0D784D82202060DB0047965D /* SEAppSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEAppSettingTableViewController.swift; sourceTree = "<group>"; };
+		0D784D83202060DB0047965D /* SEAppSettingTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEAppSettingTableViewController.xib; sourceTree = "<group>"; };
+		0D784D86202068F30047965D /* SEAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEAboutViewController.swift; sourceTree = "<group>"; };
+		0D784D87202068F30047965D /* SEAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEAboutViewController.xib; sourceTree = "<group>"; };
+		0D784D8A2020777E0047965D /* SEPersonalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SEPersonalInfoViewController.swift; sourceTree = "<group>"; };
+		0D784D8B2020777E0047965D /* SEPersonalInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SEPersonalInfoViewController.xib; sourceTree = "<group>"; };
 		0D8736131FFBBB4500A07CF6 /* Service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Service.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D8736161FFBBB4500A07CF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D8736181FFBBB4500A07CF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +161,8 @@
 				0D625BA42019C6E200E4227E /* SEOpinionViewController.xib */,
 				0D625BAB2019F0C100E4227E /* SEMyOpinionViewController.swift */,
 				0D625BAC2019F0C100E4227E /* SEMyOpinionViewController.xib */,
+				0D784D7A202056900047965D /* SEMyOpinionTableViewCell.swift */,
+				0D784D7B202056900047965D /* SEMyOpinionTableViewCell.xib */,
 			);
 			path = "意见反馈";
 			sourceTree = "<group>";
@@ -152,6 +174,8 @@
 				0D625BB5201AFB6300E4227E /* SERepairViewController.xib */,
 				0D74ED46201ECF230076BDEB /* SERepairListViewController.swift */,
 				0D74ED47201ECF230076BDEB /* SERepairListViewController.xib */,
+				0D784D7E202057DD0047965D /* SEMyRepairTableViewCell.swift */,
+				0D784D7F202057DD0047965D /* SEMyRepairTableViewCell.xib */,
 				0D625BB8201B2E3D00E4227E /* SEImageCollectionViewCell.swift */,
 				0D625BB9201B2E3D00E4227E /* SEImageCollectionViewCell.xib */,
 				0D74ED3A201B50B10076BDEB /* SESelectOrgTableViewController.swift */,
@@ -230,6 +254,10 @@
 				0D87363F2002148A00A07CF6 /* SESettingTableViewController.xib */,
 				0D27E4D92018E26500BD9D6D /* SESettingHostTableViewCell.swift */,
 				0D27E4DA2018E26500BD9D6D /* SESettingHostTableViewCell.xib */,
+				0D784D82202060DB0047965D /* SEAppSettingTableViewController.swift */,
+				0D784D83202060DB0047965D /* SEAppSettingTableViewController.xib */,
+				0D784D86202068F30047965D /* SEAboutViewController.swift */,
+				0D784D87202068F30047965D /* SEAboutViewController.xib */,
 			);
 			path = "设置";
 			sourceTree = "<group>";
@@ -252,6 +280,8 @@
 			children = (
 				0D87364D2002189300A07CF6 /* SEPersonalTableViewController.swift */,
 				0D87364E2002189300A07CF6 /* SEPersonalTableViewController.xib */,
+				0D784D8A2020777E0047965D /* SEPersonalInfoViewController.swift */,
+				0D784D8B2020777E0047965D /* SEPersonalInfoViewController.xib */,
 			);
 			path = "个人";
 			sourceTree = "<group>";
@@ -353,13 +383,18 @@
 				0D8736351FFBCC0500A07CF6 /* SELoginUserTableViewController.xib in Resources */,
 				0D8736211FFBBB4500A07CF6 /* LaunchScreen.storyboard in Resources */,
 				0D625BB22019F12600E4227E /* SEListTableViewCell.xib in Resources */,
+				0D784D89202068F30047965D /* SEAboutViewController.xib in Resources */,
 				0D625BA62019C6E200E4227E /* SEOpinionViewController.xib in Resources */,
 				0D74ED45201C2C690076BDEB /* SERepairEventViewController.xib in Resources */,
 				0D8736502002189300A07CF6 /* SEPersonalTableViewController.xib in Resources */,
 				0D87361E1FFBBB4500A07CF6 /* Assets.xcassets in Resources */,
 				0D74ED49201ECF230076BDEB /* SERepairListViewController.xib in Resources */,
+				0D784D85202060DB0047965D /* SEAppSettingTableViewController.xib in Resources */,
+				0D784D81202057DD0047965D /* SEMyRepairTableViewCell.xib in Resources */,
+				0D784D7D202056900047965D /* SEMyOpinionTableViewCell.xib in Resources */,
 				0D625BAE2019F0C100E4227E /* SEMyOpinionViewController.xib in Resources */,
 				0D8736412002148A00A07CF6 /* SESettingTableViewController.xib in Resources */,
+				0D784D8D2020777E0047965D /* SEPersonalInfoViewController.xib in Resources */,
 				0D74ED3D201B50B10076BDEB /* SESelectOrgTableViewController.xib in Resources */,
 				0D8736301FFBBC2200A07CF6 /* SELoginViewController.xib in Resources */,
 				0D625BB7201AFB6300E4227E /* SERepairViewController.xib in Resources */,
@@ -425,10 +460,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D784D88202068F30047965D /* SEAboutViewController.swift in Sources */,
 				0D625BB6201AFB6300E4227E /* SERepairViewController.swift in Sources */,
 				0D8736391FFBCD6600A07CF6 /* SESettingHostViewController.swift in Sources */,
 				0D625BB12019F12600E4227E /* SEListTableViewCell.swift in Sources */,
 				0D87364B2002182400A07CF6 /* SEMainViewController.swift in Sources */,
+				0D784D8C2020777E0047965D /* SEPersonalInfoViewController.swift in Sources */,
+				0D784D84202060DB0047965D /* SEAppSettingTableViewController.swift in Sources */,
 				0D74ED44201C2C690076BDEB /* SERepairEventViewController.swift in Sources */,
 				0D27E4DB2018E26500BD9D6D /* SESettingHostTableViewCell.swift in Sources */,
 				0D8736191FFBBB4500A07CF6 /* ViewController.swift in Sources */,
@@ -442,10 +480,12 @@
 				0D74ED3C201B50B10076BDEB /* SESelectOrgTableViewController.swift in Sources */,
 				0D625B6C2017569C00E4227E /* SETools.swift in Sources */,
 				0D87362F1FFBBC2200A07CF6 /* SELoginViewController.swift in Sources */,
+				0D784D7C202056900047965D /* SEMyOpinionTableViewCell.swift in Sources */,
 				0D8736341FFBCC0500A07CF6 /* SELoginUserTableViewController.swift in Sources */,
 				0D625B9B2018AFE500E4227E /* SEMainCollectionReusableHeaderView.swift in Sources */,
 				0D625BAD2019F0C100E4227E /* SEMyOpinionViewController.swift in Sources */,
 				0D625B6920174CEA00E4227E /* SENetworkAPI.swift in Sources */,
+				0D784D80202057DD0047965D /* SEMyRepairTableViewCell.swift in Sources */,
 				0D625B6E201839D900E4227E /* SEModel.swift in Sources */,
 				0D87364F2002189300A07CF6 /* SEPersonalTableViewController.swift in Sources */,
 				0D8736171FFBBB4500A07CF6 /* AppDelegate.swift in Sources */,

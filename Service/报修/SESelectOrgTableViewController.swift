@@ -98,6 +98,7 @@ class SESelectOrgTableViewController: UITableViewController {
         //        if cell == nil {
         //            cell = UITableViewCell(style: .default, reuseIdentifier: "reuseIdentifier")
         //        }
+        cell.selectionStyle = .default
         let model = sections[indexPath.section][indexPath.row] as? RepairOrgItem
         // Configure the cell...
         cell.textLabel?.text = model?.objName

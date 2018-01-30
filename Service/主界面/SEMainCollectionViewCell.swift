@@ -7,14 +7,15 @@
 //
 
 import UIKit
-
+import Kingfisher
 class SEMainCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
     func configCell(imageName:String?,title:String?) {
-        iconImageView.image = UIImage(named: imageName!)
+        let url:URL? = URL(string: imageName!)
+        iconImageView.kf.setImage(with: url)
         titleLabel.text = title
     }
     override func awakeFromNib() {

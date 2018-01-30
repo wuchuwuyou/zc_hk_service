@@ -20,14 +20,14 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kin-X3-eta">
-                        <rect key="frame" x="58" y="62" width="40" height="40"/>
+                        <rect key="frame" x="58.5" y="58" width="39" height="48"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="9Wq-q2-kck"/>
-                            <constraint firstAttribute="width" constant="40" id="ZQY-8X-guo"/>
+                            <constraint firstAttribute="height" constant="48" id="9Wq-q2-kck"/>
+                            <constraint firstAttribute="width" constant="39" id="ZQY-8X-guo"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOv-bI-NmB">
-                        <rect key="frame" x="10" y="107" width="136" height="21"/>
+                        <rect key="frame" x="10" y="111" width="136" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="wdb-d2-LLR"/>
                         </constraints>

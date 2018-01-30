@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="关于我们" translatesAutoresizingMaskIntoConstraints="NO" id="ti9-58-9c3">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add" translatesAutoresizingMaskIntoConstraints="NO" id="ti9-58-9c3">
                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                     </imageView>
                 </subviews>
@@ -37,6 +37,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="关于我们" width="29" height="29"/>
+        <image name="add" width="120" height="120"/>
     </resources>
 </document>

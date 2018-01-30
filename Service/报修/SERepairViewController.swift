@@ -61,7 +61,10 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.navigationItem.title = "临时报修"
         let item = UIBarButtonItem(title: "我的报修", style: .plain, target: self, action: #selector(showMyRepair))
+        self.titleLabel.text = SEModel.shared.loginModel?.userName
         self.navigationItem.rightBarButtonItem = item
         self.locationTextField.delegate = self;
         let screen_width = UIScreen.main.bounds.width
@@ -126,13 +129,21 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
         self.submitBtn.layer.borderWidth = 1
         
         collectionViewHeight.constant = 0
-        
+
         self.buildBtn.setTitle("区域", for: .normal)
         self.floorBtn.setTitle("层数", for: .normal)
         self.areaBtn.setTitle("范围", for: .normal)
         
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
+        
+        self.uploadImageBtn.setTitle("上传相册", for: .normal)
+        
+        self.submitBtn.setTitleColor(UIColor.white, for: .normal)
+        self.submitBtn.backgroundColor = UIColor.AppColor()
+        self.submitBtn.setTitle("提交", for: .normal)
+        self.submitBtn.layer.cornerRadius = 3
+
     }
     
     
@@ -409,12 +420,12 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
                 SVProgressHUD.showError(withStatus: response.error?.localizedDescription)
                 return;
             }
-//            let image_count = self.imageDataArray?.count
-//            if(image_count! > 0) {
-//                self.uploadImage(time: time)
-//            }else {
+            let image_count = self.imageDataArray?.count
+            if(image_count! > 0) {
+                self.uploadImage(time: time)
+            }else {
                 SVProgressHUD.showSuccess(withStatus: "上传成功")
-//            }
+            }
         }
     }
     func uploadImage(time:String) {

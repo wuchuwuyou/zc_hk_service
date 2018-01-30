@@ -26,23 +26,25 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "我的建议"
         self.segmentedControl = HMSegmentedControl(sectionTitles: ["已解决","未解决"])
         self.segmentedControl?.setSelectedSegmentIndex(0, animated: true)
         self.segmentedControl?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40)
         self.segmentedControl?.selectionStyle = .fullWidthStripe
         self.segmentedControl?.selectionIndicatorLocation = .down
         self.segmentedControl?.selectionIndicatorColor = UIColor.yellow
-        self.segmentedControl?.selectionIndicatorHeight = 0.5
+        self.segmentedControl?.selectionIndicatorHeight = 2
         self.segmentedControl?.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
         self.segmentedControl?.selectedTitleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        self.segmentedControl?.backgroundColor = UIColor.AppColor()
         
         self.segmentedControl?.addTarget(self, action: #selector(segmentedChange(control:)), for: UIControlEvents.valueChanged)
+        self.tableView.tableFooterView = UIView()
 
         self.topView.addSubview(self.segmentedControl!)
-        
-        self.tableView.register(UINib(nibName: "SEListTableViewCell", bundle: nil), forCellReuseIdentifier: "SEListTableViewCell")
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        self.topView.backgroundColor = UIColor.AppColor()
+        self.tableView.register(UINib(nibName: "SEMyOpinionTableViewCell", bundle: nil), forCellReuseIdentifier: "SEMyOpinionTableViewCell")
+        self.tableView.separatorStyle = .none
         let header =  MJRefreshNormalHeader {
             self.refresh()
         }
@@ -51,6 +53,8 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
             self.loadMore()
         }
         self.tableView.mj_footer = footer
+        
+        self.tableView.mj_footer.isHidden = true
         
         self.tableView.mj_header.beginRefreshing()
     }
@@ -66,7 +70,7 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
             index = 1
             status = 1
         }
-        self.refresh()
+        self.tableView.mj_header.beginRefreshing()
     }
     func refresh() {
         self.loadData(status: status, index: index)
@@ -101,19 +105,28 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
                     let array = model.infosItem?.item
                     self.dataArray = self.dataArray + array!
                 }
-                
+                if(self.dataArray.count < 20) {
+                    self.tableView.mj_footer.isHidden = true
+                }else {
+                    self.tableView.mj_footer.isHidden = false
+                }
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SEListTableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SEMyOpinionTableViewCell", for: indexPath) as! SEMyOpinionTableViewCell
+//        cell.selectionStyle = .default
         let item = self.dataArray[indexPath.row]
-        cell.textLabel?.text = item.content
+        cell.configOpinionCell(model: item, index: String(indexPath.row + 1))
         return cell
     }
     

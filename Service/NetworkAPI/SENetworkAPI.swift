@@ -60,11 +60,20 @@ class SENetworkAPI: NSObject {
         }
     }
     
+    public func menuList(ac:String,complete:@escaping (SEResponse) -> Void) {
+        let menu = self.requestURL(cmd: "APPMenuListSearchCmd")
+        let params:Parameters = ["userAccount":ac]
+        
+        self.request(url: menu, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+    }
+    
     public func addOpinion(title:String!,content:String!,complete:@escaping (SEResponse) -> Void) {
         let addOpinionURL = self.requestURL(cmd: "ComplaintAndAdviceAddCmd")
         let item = ["content":content,"title":title,"status":"0","id":"-1"]
         let property = ["isApp":"1","userAccount":SEModel.shared.loginUser?.username,"status":"0"]
-        let infoItem = ["infosItem":["item":[item]],"property":property] as [String : Any]
+        let infoItem:Parameters = ["infosItem":["item":[item]],"property":property]
         
         self.request(url: addOpinionURL, method: .post, parameters: infoItem, encoding: JSONEncoding.default, headers: nil) { (response) in
             complete(response)
@@ -74,8 +83,8 @@ class SENetworkAPI: NSObject {
     public func opinionList(index:Int!,count:Int,status:Int,complete:@escaping (SEResponse) -> Void) {
         let listURL = self.requestURL(cmd: "ComplaintAndAdviceSearchCmd")
         let pageInfos = ["index":index,"number":count,"totalNumber":-1]
-        let property = ["isApp":"1","endTime":"","userAccount":SEModel.shared.loginUser?.username as Any,"status":status] as [String : Any]
-        let params = ["pageInfos":pageInfos,"property":property] as [String : Any]
+        let property:Parameters = ["isApp":"1","endTime":"","userAccount":SEModel.shared.loginUser?.username as Any,"status":status]
+        let params:Parameters = ["pageInfos":pageInfos,"property":property]
         self.request(url: listURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
             complete(response)
         }
@@ -95,7 +104,7 @@ class SENetworkAPI: NSObject {
     public func repairClassInfo(complete:@escaping (SEResponse) -> Void) {
         let infoURL = self.requestURL(cmd: "TemRepairQueryListCommand")
         let pages = ["index":-1,"number":-1,"totalNumber":-1]
-        let property = ["hasArea":0,"hasAreaNumber":0,"hasAreaType":0,"hasContent":0,"hasPerson":0,"hasTemRepairOrg":1,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let property:Parameters = ["hasArea":0,"hasAreaNumber":0,"hasAreaType":0,"hasContent":0,"hasPerson":0,"hasTemRepairOrg":1,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any]
         let params = ["pageInfos":pages,"property":property]
         self.request(url: infoURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
             complete(response)
@@ -106,7 +115,7 @@ class SENetworkAPI: NSObject {
     public func repairEventInfo(complete:@escaping (SEResponse) -> Void) {
         let infoURL = self.requestURL(cmd: "TemRepairQueryListCommand")
         let pages = ["index":-1,"number":-1,"totalNumber":-1]
-        let property = ["hasArea":0,"hasAreaNumber":0,"hasAreaType":0,"hasContent":1,"hasPerson":0,"hasTemRepairOrg":0,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let property:Parameters = ["hasArea":0,"hasAreaNumber":0,"hasAreaType":0,"hasContent":1,"hasPerson":0,"hasTemRepairOrg":0,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any]
         let params = ["pageInfos":pages,"property":property]
         self.request(url: infoURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
             complete(response)
@@ -117,7 +126,7 @@ class SENetworkAPI: NSObject {
     public func repairRegionInfo(complete:@escaping (SEResponse) -> Void) {
         let infoURL = self.requestURL(cmd: "TemRepairQueryListCommand")
         let pages = ["index":-1,"number":-1,"totalNumber":-1]
-        let property = ["hasArea":1,"hasAreaNumber":1,"hasAreaType":1,"hasContent":0,"hasPerson":0,"hasTemRepairOrg":0,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let property:Parameters = ["hasArea":1,"hasAreaNumber":1,"hasAreaType":1,"hasContent":0,"hasPerson":0,"hasTemRepairOrg":0,"hasType":0,"personNameKey":"","userAccountName":SEModel.shared.loginUser?.username as Any]
         let params = ["pageInfos":pages,"property":property]
         self.request(url: infoURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
             complete(response)
@@ -131,7 +140,7 @@ class SENetworkAPI: NSObject {
     */
     public func addRepairReport(content:String,number:String,orgId:Int,phone:String, complete:@escaping (SEResponse) -> Void) {
         let report = self.requestURL(cmd: "TemporaryRepairAddCommand")
-        let item = ["maintainContent":"","maintainTime":"","repairContent":content,"repairFeedback":"","repairNumber":number,"repairOrgId":orgId,"repairOrgName":"","repairStatus":0,"repairTime":"","repairTypeId":-1,"repairTypeName":"","repairUser":"","repairUserPhone":phone,"unFinishedReason":""] as [String : Any]
+        let item:Parameters = ["maintainContent":"","maintainTime":"","repairContent":content,"repairFeedback":"","repairNumber":number,"repairOrgId":orgId,"repairOrgName":"","repairStatus":0,"repairTime":"","repairTypeId":-1,"repairTypeName":"","repairUser":"","repairUserPhone":phone,"unFinishedReason":""]
         let property = ["status":-1,"userAccount":SEModel.shared.loginUser?.username as Any]
         let params = ["infos":["items":[item]],"property":property]
         
@@ -145,7 +154,7 @@ class SENetworkAPI: NSObject {
      */
     public func repairList(status:Int,complete:@escaping (SEResponse) -> Void) {
         let list = self.requestURL(cmd: "TemporaryRepairSearchCommand")
-        let property = ["status":status,"userAccount":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let property:Parameters = ["status":status,"userAccount":SEModel.shared.loginUser?.username as Any]
         let params = ["property":property]
         
         self.request(url: list, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
@@ -155,8 +164,8 @@ class SENetworkAPI: NSObject {
     /// feedback  反馈内容
     public func repairReportFeedback(item:RepairListItem,feedback:String,complete:@escaping (SEResponse) -> Void) {
         let feedbackURL = self.requestURL(cmd: "TemporaryRepairUpdateCommand")
-        let item = ["maintainContent":item.maintainContent!,"maintainTime":item.maintainTime as Any,"repairContent":item.repairContent!,"repairFeedback":feedback,"repairNumber":item.repairNumber as Any, "repairOrgId":item.repairOrgId as Any,"repairOrgName":item.repairOrgName as Any,"repairStatus":1,"repairTime":item.repairTime!,"repairTypeId":item.repairTypeId!,"repairTypeName":item.repairTypeName as Any,"repairUser":"","repairUserPhone":"","unFinishedReason":""] as [String : Any]
-        let property = ["status":3,"userAccount":SEModel.shared.loginUser?.username as Any] as [String : Any]
+        let item:Parameters = ["maintainContent":item.maintainContent!,"maintainTime":item.maintainTime as Any,"repairContent":item.repairContent!,"repairFeedback":feedback,"repairNumber":item.repairNumber as Any, "repairOrgId":item.repairOrgId as Any,"repairOrgName":item.repairOrgName as Any,"repairStatus":1,"repairTime":item.repairTime!,"repairTypeId":item.repairTypeId!,"repairTypeName":item.repairTypeName as Any,"repairUser":"","repairUserPhone":"","unFinishedReason":""]
+        let property:Parameters = ["status":3,"userAccount":SEModel.shared.loginUser?.username as Any]
         let params = ["property":property,"infos":["items":[item]]]
         
         self.request(url: feedbackURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
@@ -207,8 +216,8 @@ class SENetworkAPI: NSObject {
                 }
             }
             if json.keys.contains("responseCommand") {
-                let success = json["responseCommand"]
-                if (success?.isEqual("OK"))! {
+                let success = (json["responseCommand"] as! String).lowercased()
+                if (success.isEqual("ok")) {
                     return nil;
                 }else {
                     var msg = "网络错误"
@@ -228,5 +237,8 @@ class SENetworkAPI: NSObject {
     }
     func requestURL(cmd:String) -> String {
         return host+urlPath+"?cmd=\(cmd)"
+    }
+    func imageURL(name:String) -> String {
+        return host+"/ZCTJFirstCHospital"+"/appicon/"+name
     }
 }

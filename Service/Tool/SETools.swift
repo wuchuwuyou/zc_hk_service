@@ -202,19 +202,16 @@ extension UIColor {
     }
 }
 
-extension UIImage {
-    class func imageWithColor(color:UIColor) ->UIImage {
-        let rect = CGRect(x: 0, y: 0, width: 1, height: 1);
-        UIGraphicsBeginImageContext(rect.size);
-        let context = UIGraphicsGetCurrentContext();
+public extension UIImage {
+    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
-        context!.setFillColor(color.cgColor);
-
-        context?.addRect(rect)
-
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return image!
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
     }
 }

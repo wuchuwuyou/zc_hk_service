@@ -21,11 +21,35 @@ class SEModel: NSObject {
             _loginModel = newValue
         }
     }
-    
+    var menu:[SEMenuItem]?
     static let shared = SEModel()
     
     private override init() {}
 }
+
+
+
+class SEMenuChildItem: NSObject,Codable {
+    var fatherId:Int = -1
+    var link:String = ""
+    var menuId:Int = -1
+    var menuName:String = ""
+    var orderIndex:Int = -1
+}
+class SEMenuItem: NSObject,Codable {
+    var hasChild:Int = -1
+    var icon:String = ""
+    var number:Int = -1
+    var menuId:Int = -1
+    var menuName:String = ""
+    var orderIndex:Int = -1
+    var children:[SEMenuChildItem]? = []
+}
+class SEMenuResp:NSObject,Codable {
+    var menus:[SEMenuItem]? = []
+    var resp:respModel? = respModel(responseCommand: "", failReason: "")
+}
+
 
 class SEMainListModel: NSObject {
     var imageName:String = ""
@@ -40,10 +64,10 @@ class SEMainListModel: NSObject {
     }
 }
 
-enum Service_type:String {
-    case baoxiu_service = "baoxiu"
-    case tousu_service = "tousu"
-    case default_service = "default"
+enum Service_type:Int {
+    case baoxiu_service = 79
+    case tousu_service = 80
+    case default_service = -1
 }
 
 class LoginUser:NSObject,Codable {

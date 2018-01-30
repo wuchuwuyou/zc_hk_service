@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SERepairEventViewController" customModule="Service" customModuleProvider="target">
             <connections>
+                <outlet property="submitBrn" destination="MhJ-5Z-pLN" id="EHl-Xj-6pL"/>
                 <outlet property="tableView" destination="JQF-zp-B6k" id="3Lo-gb-ezd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

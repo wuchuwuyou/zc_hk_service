@@ -14,8 +14,11 @@ class SENavigationViewController: UINavigationController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationBar.barTintColor = UIColor.AppColor()
+//        self.navigationBar.barTintColor = UIColor.AppColor()
+        self.navigationItem.title = "我的建议"
         self.navigationBar.tintColor = UIColor.white
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        self.navigationBar.setBackgroundImage(UIImage(color: UIColor.AppColor(), size: CGSize(width: 1, height: 1)), for: UIBarMetrics.default)
     }
 
     override func didReceiveMemoryWarning() {

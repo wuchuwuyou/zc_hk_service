@@ -11,6 +11,7 @@ target 'Service' do
   pod 'HMSegmentedControl'
   pod 'MJRefresh'
   pod 'DKImagePickerController'
+  pod 'Kingfisher'
   # Pods for Service
 
 end

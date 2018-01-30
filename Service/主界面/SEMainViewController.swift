@@ -15,11 +15,14 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
     var header_imageView:UIImageView?
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var dataArray:[SEMainListModel]? = []
+    var dataArray:[SEMenuItem]? = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.navigationItem.title = "智慧医院后勤管理平台"
+        
         self.collectionView.register(UINib(nibName: "SEMainCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SEMainCollectionViewCell")
         self.collectionView.register(UINib(nibName: "SEMainCollectionReusableHeaderView", bundle: nil), forSupplementaryViewOfKind:UICollectionElementKindSectionHeader , withReuseIdentifier: "SEMainCollectionReusableHeaderView")
         self.collectionView.delegate = self
@@ -30,7 +33,7 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
         layout.minimumInteritemSpacing = lineSpace
         layout.scrollDirection = .vertical
         let screen_width = UIScreen.main.bounds.width
-        layout.headerReferenceSize = CGSize(width: screen_width, height: screen_width/(16/9))
+        layout.headerReferenceSize = CGSize(width: screen_width, height: screen_width/(2/1))
         self.collectionView.collectionViewLayout = layout
         
         self.initData()
@@ -46,9 +49,9 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
         return CGSize(width: width, height: height)
     }
     func initData() {
-        let data_baoxiu = SEMainListModel.initWithInfo(title: "临时报修", imageName: "登录", type: .baoxiu_service)
-        let data_tousu = SEMainListModel.initWithInfo(title: "投诉建议", imageName: "登录", type: .tousu_service)
-        self.dataArray = [data_tousu,data_baoxiu]
+//        let data_baoxiu = SEMainListModel.initWithInfo(title: "临时报修", imageName: "登录", type: .baoxiu_service)
+//        let data_tousu = SEMainListModel.initWithInfo(title: "投诉建议", imageName: "登录", type: .tousu_service)
+        self.dataArray = SEModel.shared.menu
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -56,7 +59,7 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model:SEMainListModel? = self.dataArray?[indexPath.row]
+        let model:SEMenuItem? = self.dataArray?[indexPath.row]
         self.showServiceController(model: model)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -64,8 +67,9 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SEMainCollectionViewCell", for: indexPath) as! SEMainCollectionViewCell
-        let model:SEMainListModel? = self.dataArray?[indexPath.row]
-        cell.configCell(imageName: model?.imageName, title: model?.title)
+        let model:SEMenuItem? = self.dataArray?[indexPath.row]
+        let imageURL:String? = SENetworkAPI.sharedInstance.imageURL(name: (model?.icon)!)
+        cell.configCell(imageName: imageURL, title: model?.menuName)
         return cell
     }
     
@@ -73,7 +77,7 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SEMainCollectionReusableHeaderView", for: indexPath) as! SEMainCollectionReusableHeaderView
-            let image = UIImage(named: "640x1136")
+            let image = UIImage(named: "banner1")
             header.imageView.image = image
             return header
         }else {
@@ -81,23 +85,23 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
         }
     }
     
-    func showServiceController(model:SEMainListModel?) {
+    func showServiceController(model:SEMenuItem?) {
         if model == nil {
             return
         }
-        let type:Service_type = model!.type
+        let type = model?.menuId
         switch type {
-            case Service_type.baoxiu_service:
+            case Service_type.baoxiu_service.rawValue?:
                 let repair = SERepairViewController(nibName: "SERepairViewController", bundle: nil)
                 repair.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(repair, animated: true)
                 break
-            case Service_type.tousu_service:
+            case Service_type.tousu_service.rawValue?:
                 let opinion = SEOpinionViewController(nibName: "SEOpinionViewController", bundle: nil)
                 opinion.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(opinion, animated: true)
                 break
-            case Service_type.default_service:
+            case Service_type.default_service.rawValue?:
                 print("can't show service controller")
                 break
             default:

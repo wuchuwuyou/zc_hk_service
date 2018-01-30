@@ -28,6 +28,7 @@ class SESettingTableViewController: UITableViewController {
         self.tableView.register(UINib(nibName: "SESettingHostTableViewCell", bundle: nil), forCellReuseIdentifier: "SESettingHostTableViewCell")
         self.dataArray = HostUserDefaults.hostList()
         self.tableView.reloadData()
+        self.tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,6 +53,7 @@ class SESettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SESettingHostTableViewCell", for: indexPath)
         let model = dataArray[indexPath.section]
         // Configure the cell...
+//        cell.selectionStyle = .default
         cell.textLabel?.text = model.stringText()
         return cell
     }

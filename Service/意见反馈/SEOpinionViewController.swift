@@ -11,6 +11,7 @@ import SVProgressHUD
 
 class SEOpinionViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var submitBtn: UIButton!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
@@ -18,6 +19,9 @@ class SEOpinionViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.titleLabel.text = SEModel.shared.loginModel?.userName
+
+        self.navigationItem.title = "意见建议"
         let item = UIBarButtonItem(title: "我的建议", style: .plain, target: self, action: #selector(showMyOpinion))
         self.navigationItem.rightBarButtonItem = item
         self.contentTextView.layer.cornerRadius = 2
@@ -26,6 +30,12 @@ class SEOpinionViewController: UIViewController {
         self.titleTextField.layer.cornerRadius = 2
         self.titleTextField.layer.borderWidth = 1
         self.titleTextField.layer.borderColor = UIColor.lightGray.cgColor
+        
+        self.submitBtn.setTitle("匿名提交", for: .normal)
+        self.submitBtn.setTitleColor(UIColor.white, for: .normal)
+        self.submitBtn.backgroundColor = UIColor.AppColor()
+        self.submitBtn.layer.cornerRadius = 2
+         
     }
 
     @objc func showMyOpinion() {

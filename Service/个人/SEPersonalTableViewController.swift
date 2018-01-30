@@ -9,7 +9,18 @@
 import UIKit
 
 class SEPersonalTableViewController: UITableViewController {
-        
+    
+    
+    @IBOutlet weak var avatarImageView: UIImageView!
+    
+    @IBOutlet weak var label1: UILabel!
+    
+    @IBOutlet weak var label2: UILabel!
+    
+    @IBOutlet weak var topView: UIView!
+    
+    var dataArray:[[String:String]] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,8 +29,27 @@ class SEPersonalTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.navigationItem.title = "智慧医院后勤管理平台"
+
+        self.topView.backgroundColor = UIColor.AppColor()
+        let model = SEModel.shared.loginModel
+        self.label1.text = model?.userName
+        self.label2.text = (model?.roleName)! + "/" + (model?.company)!
+        self.avatarImageView.image = UIImage(named: "icon")
+        self.dataArray = [["title":"空间清理","icon":"空间清理"],["title":"修改密码","icon":"修改密码"],["title":"退出登录","icon":"退出登录"]]
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        self.tableView.tableFooterView = UIView()
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.showUserInfo))
+        self.topView.addGestureRecognizer(tap)
     }
 
+    @objc func showUserInfo() {
+        let info = SEPersonalInfoViewController(nibName: "SEPersonalInfoViewController", bundle: nil)
+        self.navigationController?.pushViewController(info, animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,23 +59,38 @@ class SEPersonalTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.dataArray.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        
         // Configure the cell...
-
+        cell.selectionStyle = .default
+        let item = self.dataArray[indexPath.row]
+        cell.imageView?.image = UIImage(named: item["icon"]!)
+        cell.textLabel?.text = item["title"]
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 { //空间清理
+            
+        }else if indexPath.row == 1 { // 修改密码
+            
+        }else if indexPath.row == 2 { //退出登录
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let loginController = SENavigationViewController(rootViewController: SELoginViewController(nibName: "SELoginViewController", bundle: nil))
+            appDelegate.window?.rootViewController = loginController
+        }
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

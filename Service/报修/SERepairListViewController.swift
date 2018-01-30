@@ -28,23 +28,30 @@ class SERepairListViewController: UIViewController,UITableViewDelegate,UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.navigationItem.title = "我的报修"
+        
         self.segmentedControl = HMSegmentedControl(sectionTitles: ["未处理","已确认","已反馈"])
         self.segmentedControl?.setSelectedSegmentIndex(0, animated: true)
         self.segmentedControl?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40)
         self.segmentedControl?.selectionStyle = .fullWidthStripe
         self.segmentedControl?.selectionIndicatorLocation = .down
         self.segmentedControl?.selectionIndicatorColor = UIColor.yellow
-        self.segmentedControl?.selectionIndicatorHeight = 0.5
+        self.segmentedControl?.selectionIndicatorHeight = 2
         self.segmentedControl?.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.gray]
         self.segmentedControl?.selectedTitleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
-        
+        self.segmentedControl?.backgroundColor = UIColor.AppColor()
+
         self.segmentedControl?.addTarget(self, action: #selector(segmentedChange(control:)), for: UIControlEvents.valueChanged)
         
         self.topView.addSubview(self.segmentedControl!)
         
-        self.tableView.register(UINib(nibName: "SEListTableViewCell", bundle: nil), forCellReuseIdentifier: "SEListTableViewCell")
+        self.tableView.register(UINib(nibName: "SEMyRepairTableViewCell", bundle: nil), forCellReuseIdentifier: "SEMyRepairTableViewCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .none
+        self.tableView.tableFooterView = UIView()
+        
         let header =  MJRefreshNormalHeader {
             self.refresh()
         }
@@ -93,22 +100,30 @@ class SERepairListViewController: UIViewController,UITableViewDelegate,UITableVi
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SEListTableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SEMyRepairTableViewCell", for: indexPath) as! SEMyRepairTableViewCell
+//        cell.selectionStyle = .default
         let item = self.dataArray[indexPath.row]
-        cell.textLabel?.text = item.repairContent
+        cell.configRepairCell(model: item, index: String(indexPath.row + 1))
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (status == 4) {
+        let item = self.dataArray[indexPath.row]
+        
+        if (item.repairStatus == 4) {
             let item = self.dataArray[indexPath.row]
             self.showFeedback(item: item)
         }
     }
+    
     func showFeedback(item:RepairListItem) {
         
         let action1 = UIAlertAction(title: "满意", style: .default) { (action) in

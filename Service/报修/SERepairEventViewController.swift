@@ -16,6 +16,10 @@ protocol RepairEventDelegate {
 class SERepairEventViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var submitBrn: UIButton!
+    
+    
     let collation = UILocalizedIndexedCollation.current()
     var sections:[[Any]] = []
     var titles:[String] = []
@@ -57,6 +61,11 @@ class SERepairEventViewController: UIViewController,UITableViewDelegate,UITableV
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.submitBrn.setTitle("选好了", for: .normal)
+        self.submitBrn.setTitleColor(UIColor.white, for: .normal)
+        self.submitBrn.backgroundColor = UIColor.AppColor()
+        self.submitBrn.layer.cornerRadius = 3
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         self.tableView.isEditing = true
         self.tableView.allowsMultipleSelectionDuringEditing = true
@@ -104,6 +113,7 @@ class SERepairEventViewController: UIViewController,UITableViewDelegate,UITableV
         //        if cell == nil {
         //            cell = UITableViewCell(style: .default, reuseIdentifier: "reuseIdentifier")
         //        }
+        cell.selectionStyle = .default
         let model = sections[indexPath.section][indexPath.row] as? RepairOrgItem
         // Configure the cell...
         cell.textLabel?.text = model?.objName

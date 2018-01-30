@@ -53,8 +53,10 @@ class SELoginUserTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         self.dataArray = LoginUserDefaults.loginUserList()
-//        self.tableView.reloadData()
         
+        self.navigationItem.title = "选择用户"
+//        self.tableView.reloadData()
+        self.tableView.tableFooterView = UIView()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -88,6 +90,7 @@ class SELoginUserTableViewController: UITableViewController {
 //        }
         let model = sections[indexPath.section][indexPath.row] as? LoginUser
         // Configure the cell...
+        cell.selectionStyle = .default
         cell.textLabel?.text = model?.user_name
         return cell
     }
