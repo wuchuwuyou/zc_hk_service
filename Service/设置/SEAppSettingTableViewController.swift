@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SEAppSettingTableViewController: UITableViewController {
     
@@ -70,7 +71,13 @@ class SEAppSettingTableViewController: UITableViewController {
 //        let item = self.dataArray[indexPath.row]
 //        let content = item["content"] as! String
         
-        if (indexPath.row == 1) {
+        if indexPath.row == 0 {
+            
+            let infoDictionary = Bundle.main.infoDictionary
+            let majorVersion :String? = infoDictionary? ["CFBundleShortVersionString"] as? String//主程序版本号
+            SVProgressHUD.showInfo(withStatus: "当前版本：" + majorVersion!)
+            
+        }else if (indexPath.row == 1) {
             let hostSetting = SESettingHostViewController(nibName: "SESettingHostViewController", bundle: nil)
             self.navigationController?.pushViewController(hostSetting, animated: true)
 

@@ -10,7 +10,7 @@ import UIKit
 
 class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
 
-    let lineSpace = CGFloat(integerLiteral: 2)
+    let lineSpace = CGFloat(0.5)
     
     var header_imageView:UIImageView?
     @IBOutlet weak var collectionView: UICollectionView!
@@ -38,15 +38,18 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
         
         self.initData()
         self.collectionView.reloadData()
-
+//        self.view.backgroundColor = UIColor.bgColor()
+//        self.collectionView.backgroundColor = UIColor.bgColor()
+        
     }
+    
     func calSize(col_num:Int) -> CGSize {
         let screen_width = UIScreen.main.bounds.width
         let line:Int = col_num - 1
         let line_width = CGFloat(integerLiteral: line) * lineSpace
         let width = (screen_width - line_width) / CGFloat(integerLiteral: col_num)
         let height = width / 1.3
-        return CGSize(width: width, height: height)
+        return CGSize(width: width - 1, height: height - 1)
     }
     func initData() {
 //        let data_baoxiu = SEMainListModel.initWithInfo(title: "临时报修", imageName: "登录", type: .baoxiu_service)

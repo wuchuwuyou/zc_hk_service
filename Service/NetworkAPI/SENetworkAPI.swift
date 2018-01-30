@@ -37,6 +37,7 @@ class SENetworkAPI: NSObject {
         /// The error encountered while executing or validating the request.
         public let error: NSError?
     }
+    
     public func request(url:String,method:HTTPMethod,parameters: Parameters? = nil,encoding: ParameterEncoding = URLEncoding.default,
                         headers: HTTPHeaders? = nil,complete:@escaping (SEResponse) -> Void) {
         Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers).response { (response) in
@@ -174,14 +175,14 @@ class SENetworkAPI: NSObject {
 
     }
     
-    public func uploadImages(number:String,images:[UIImage],complete:@escaping (SEResponse) -> Void) {
+    public func uploadImages(number:String,images:[UIImage],closure: @escaping (Progress) -> Void,complete:@escaping (SEResponse) -> Void) {
         let upload_image_url = self.requestURL(cmd: "TemporaryRepairFileUploadCommand")
         
         Alamofire.upload(multipartFormData: { (formData) in
             formData.append(number.data(using: .utf8)!, withName: "repairNumber")
             for image in images {
                 let data = UIImageJPEGRepresentation(image, 0.9)
-                formData.append(data!, withName: "img", fileName: String(format: "%d", image.hashValue), mimeType: "image/jpeg")
+                formData.append(data!, withName: "img", fileName: String(format: "%d.jpg", image.hashValue), mimeType: "image/jpeg")
             }
         }, to: upload_image_url) { (encodingResult) in
             switch encodingResult {
@@ -190,12 +191,22 @@ class SENetworkAPI: NSObject {
                     //连接服务器成功后，对json的处理
                     request.responseJSON { response in
                         //解包
-                        guard let result = response.result.value else { return }
-                        print("json:\(result)")
+//                        guard let result = response.result.value else { return }
+//                        print("json:\(result)")
+                        var error = response.error
+                        var data = response.data
+                        let err = self.handleJSONData(data: response.data)
+                        if (err != nil) {
+                            error = err
+                            data = nil
+                        }
+                        let resp = SEResponse(response: data, error: error as NSError?)
+                        complete(resp)
                     }
                     //获取上传进度
                     request.uploadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
                         print("图片上传进度: \(progress.fractionCompleted)")
+                        closure(progress)
                 }
                 case .failure(let encodingError):
                     print(encodingError)

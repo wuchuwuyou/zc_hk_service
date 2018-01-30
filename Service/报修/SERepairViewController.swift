@@ -425,6 +425,7 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
                 self.uploadImage(time: time)
             }else {
                 SVProgressHUD.showSuccess(withStatus: "上传成功")
+                self.navigationController?.popViewController(animated: true)
             }
         }
     }
@@ -436,8 +437,15 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
             })
         }
         
-        SENetworkAPI.sharedInstance.uploadImages(number: time, images: imageArray) { (response) in
-            
+        SENetworkAPI.sharedInstance.uploadImages(number: time, images: imageArray, closure: { (progress) in
+            SVProgressHUD.showProgress(Float(progress.fractionCompleted))
+        }) { (response) in
+            if response.error != nil {
+                SVProgressHUD.showError(withStatus: response.error?.localizedDescription)
+                return;
+            }
+            SVProgressHUD.showSuccess(withStatus: "提交成功")
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

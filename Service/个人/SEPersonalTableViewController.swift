@@ -37,7 +37,8 @@ class SEPersonalTableViewController: UITableViewController {
         self.label1.text = model?.userName
         self.label2.text = (model?.roleName)! + "/" + (model?.company)!
         self.avatarImageView.image = UIImage(named: "icon")
-        self.dataArray = [["title":"空间清理","icon":"空间清理"],["title":"修改密码","icon":"修改密码"],["title":"退出登录","icon":"退出登录"]]
+//        self.dataArray = [["title":"空间清理","icon":"空间清理"],["title":"修改密码","icon":"修改密码"],["title":"退出登录","icon":"退出登录"]]
+        self.dataArray = [["title":"退出登录","icon":"退出登录"]]
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         self.tableView.tableFooterView = UIView()
         
@@ -80,15 +81,18 @@ class SEPersonalTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 { //空间清理
-            
-        }else if indexPath.row == 1 { // 修改密码
-            
-        }else if indexPath.row == 2 { //退出登录
+//        if indexPath.row == 0 { //空间清理
+//
+//        }else if indexPath.row == 1 { // 修改密码
+//
+//        }else if indexPath.row == 2 { //退出登录
+        if indexPath.row == 1 {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let loginController = SENavigationViewController(rootViewController: SELoginViewController(nibName: "SELoginViewController", bundle: nil))
             appDelegate.window?.rootViewController = loginController
-        }
+
+            }
+//        }
     }
     
 
