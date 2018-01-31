@@ -165,8 +165,8 @@ class SENetworkAPI: NSObject {
     /// feedback  反馈内容
     public func repairReportFeedback(item:RepairListItem,feedback:String,complete:@escaping (SEResponse) -> Void) {
         let feedbackURL = self.requestURL(cmd: "TemporaryRepairUpdateCommand")
-        let item:Parameters = ["maintainContent":item.maintainContent!,"maintainTime":item.maintainTime as Any,"repairContent":item.repairContent!,"repairFeedback":feedback,"repairNumber":item.repairNumber as Any, "repairOrgId":item.repairOrgId as Any,"repairOrgName":item.repairOrgName as Any,"repairStatus":1,"repairTime":item.repairTime!,"repairTypeId":item.repairTypeId!,"repairTypeName":item.repairTypeName as Any,"repairUser":"","repairUserPhone":"","unFinishedReason":""]
-        let property:Parameters = ["status":3,"userAccount":SEModel.shared.loginUser?.username as Any]
+        let item:Parameters = ["maintainContent":feedback,"maintainTime":"" ,"repairContent":"","repairFeedback":"","repairNumber":item.repairNumber as Any, "repairOrgId":-1,"repairOrgName":"","repairStatus":2,"repairTime":"","repairTypeId":-1,"repairTypeName":"","repairUser":"","repairUserPhone":"","unFinishedReason":""]
+        let property:Parameters = ["status":4,"userAccount":SEModel.shared.loginUser?.username as Any]
         let params = ["property":property,"infos":["items":[item]]]
         
         self.request(url: feedbackURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in

@@ -20,8 +20,9 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
-    var index = 1
+    var index = 0
     var status = 0
+    var page_count = 20
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -63,11 +64,11 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
         
         if control.selectedSegmentIndex == 0 {
 //            已解决
-            index = 1
+            index = 0
             status = 0
         }else if control.selectedSegmentIndex == 1 {
 //            未解决
-            index = 1
+            index = 0
             status = 1
         }
         self.tableView.mj_header.beginRefreshing()
@@ -76,11 +77,11 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
         self.loadData(status: status, index: index)
     }
     func loadMore() {
-        index = index+1
+        index = index + page_count
         self.loadData(status: status, index: index)
     }
     func loadData(status:Int,index:Int) {
-        SENetworkAPI.sharedInstance.opinionList(index: index, count: 20, status: status) { (response) in
+        SENetworkAPI.sharedInstance.opinionList(index: index, count: page_count, status: status) { (response) in
             self.tableView.mj_header.endRefreshing()
             self.tableView.mj_footer.endRefreshing()
             
@@ -99,7 +100,7 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
                 let model = try! decoder.decode(ListRespModel.self, from: response.response!)
                 self.index = (model.pageInfos?.index)!
 
-                if(index == 1) {
+                if(index == 0) {
                     self.dataArray = (model.infosItem?.item)!
                 }else {
                     let array = model.infosItem?.item
