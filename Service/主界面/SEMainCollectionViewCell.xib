@@ -27,7 +27,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOv-bI-NmB">
-                        <rect key="frame" x="10" y="116" width="136" height="21"/>
+                        <rect key="frame" x="10" y="111" width="136" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="wdb-d2-LLR"/>
                         </constraints>
@@ -40,11 +40,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="gOv-bI-NmB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="6SB-Un-Sak"/>
-                <constraint firstItem="gOv-bI-NmB" firstAttribute="top" secondItem="kin-X3-eta" secondAttribute="bottom" constant="10" id="7OO-jN-NRR"/>
+                <constraint firstItem="gOv-bI-NmB" firstAttribute="top" secondItem="kin-X3-eta" secondAttribute="bottom" constant="5" id="7OO-jN-NRR"/>
                 <constraint firstItem="kin-X3-eta" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="9AG-he-fk1"/>
                 <constraint firstItem="kin-X3-eta" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="Tyv-Ne-Jtx"/>
                 <constraint firstAttribute="trailing" secondItem="gOv-bI-NmB" secondAttribute="trailing" constant="10" id="aHo-Fs-eBK"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gOv-bI-NmB" secondAttribute="bottom" constant="10" id="cdZ-Q2-7lW"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gOv-bI-NmB" secondAttribute="bottom" constant="5" id="cdZ-Q2-7lW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="156" height="164"/>

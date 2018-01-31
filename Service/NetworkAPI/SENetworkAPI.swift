@@ -72,7 +72,7 @@ class SENetworkAPI: NSObject {
     
     public func addOpinion(title:String!,content:String!,complete:@escaping (SEResponse) -> Void) {
         let addOpinionURL = self.requestURL(cmd: "ComplaintAndAdviceAddCmd")
-        let item = ["content":content,"title":title,"status":"0","id":"-1"]
+        let item = ["content":content,"title":title,"status":"0","id":"-1","solveAccount":"","solveContent":"","solveTime":""]
         let property = ["isApp":"1","userAccount":SEModel.shared.loginUser?.username,"status":"0"]
         let infoItem:Parameters = ["infosItem":["item":[item]],"property":property]
         
