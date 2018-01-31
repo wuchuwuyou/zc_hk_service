@@ -117,6 +117,9 @@ struct ListDataModel:Codable {
     let title:String?
     let content:String?
     let status:Int?
+    let solveAccount:String?
+    let solveContent:String?
+    let solveTime:String?
 }
 
 struct pagesModel:Codable {
