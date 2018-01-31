@@ -29,7 +29,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="640x960" translatesAutoresizingMaskIntoConstraints="NO" id="9gf-Av-Uo0">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="9gf-Av-Uo0">
                     <rect key="frame" x="123" y="71" width="128" height="128"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="Iry-hl-oiz"/>
@@ -41,8 +41,8 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="BLV-Av-od1"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jsb-oK-aCb">
@@ -80,7 +80,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IG1-OC-72i">
-                    <rect key="frame" x="20" y="282" width="335" height="223"/>
+                    <rect key="frame" x="20" y="292" width="335" height="223"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z2K-yH-zEE">
                             <rect key="frame" x="8" y="8" width="299" height="44"/>
@@ -150,7 +150,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OyK-wr-Swx" secondAttribute="trailing" constant="40" id="WyI-kq-ftP"/>
                 <constraint firstItem="9gf-Av-Uo0" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="d2M-9h-oQb"/>
                 <constraint firstItem="9gf-Av-Uo0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="51" id="eec-9o-B8g"/>
-                <constraint firstItem="IG1-OC-72i" firstAttribute="top" secondItem="OyK-wr-Swx" secondAttribute="bottom" constant="40" id="pBM-NM-gxU"/>
+                <constraint firstItem="IG1-OC-72i" firstAttribute="top" secondItem="OyK-wr-Swx" secondAttribute="bottom" constant="50" id="pBM-NM-gxU"/>
                 <constraint firstItem="Jsb-oK-aCb" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="yJy-cr-gWh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IG1-OC-72i" secondAttribute="trailing" constant="20" id="ye9-aN-XL2"/>
             </constraints>
@@ -159,7 +159,7 @@
         </view>
     </objects>
     <resources>
-        <image name="640x960" width="640" height="960"/>
+        <image name="icon" width="1024" height="1024"/>
         <image name="登录" width="29" height="29"/>
     </resources>
 </document>

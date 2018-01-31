@@ -52,7 +52,7 @@ class SEOpinionViewController: UIViewController {
             SVProgressHUD.showInfo(withStatus: "请输入详细内容")
             return
         }
-        
+        SVProgressHUD.show()
         SENetworkAPI.sharedInstance.addOpinion(title: self.titleTextField.text, content: self.contentTextView.text) { (response) in
             if response.error != nil {
                 

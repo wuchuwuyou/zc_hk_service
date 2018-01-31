@@ -53,10 +53,12 @@ class SELoginViewController: UIViewController,SelectUserDelegate,UITextFieldDele
         
         self.accountTextField.placeholder = "请输入账号"
         self.passwordTextField.placeholder = "请输入密码"
-        #if DEBUG
-            self.accountTextField.text = "pingguozhongxin"
-            self.passwordTextField.text = "123"
-        #endif
+        
+        self.passwordTextField.isSecureTextEntry = true
+//        #if DEBUG
+//            self.accountTextField.text = "pingguozhongxin"
+//            self.passwordTextField.text = "123"
+//        #endif
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true

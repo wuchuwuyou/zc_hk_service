@@ -86,7 +86,7 @@ class SEPersonalTableViewController: UITableViewController {
 //        }else if indexPath.row == 1 { // 修改密码
 //
 //        }else if indexPath.row == 2 { //退出登录
-        if indexPath.row == 1 {
+        if indexPath.row == 0 {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let loginController = SENavigationViewController(rootViewController: SELoginViewController(nibName: "SELoginViewController", bundle: nil))
             appDelegate.window?.rootViewController = loginController

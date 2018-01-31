@@ -54,7 +54,12 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
     func initData() {
 //        let data_baoxiu = SEMainListModel.initWithInfo(title: "临时报修", imageName: "登录", type: .baoxiu_service)
 //        let data_tousu = SEMainListModel.initWithInfo(title: "投诉建议", imageName: "登录", type: .tousu_service)
-        self.dataArray = SEModel.shared.menu
+        let data = SEModel.shared.menu
+        for item in data! {
+            if (item.menuId == 79 || item.menuId == 80){
+                self.dataArray?.append(item)
+            }
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -414,7 +414,7 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
       
         let content = ((self.selectBuilding?.objName)! + (self.selectFloor?.objName)! + (self.selectRange?.objName)!) + self.contentTextView.text
         
-
+        SVProgressHUD.show()
         SENetworkAPI.sharedInstance.addRepairReport(content: content, number: time, orgId: (self.orgItem?.objId)!, phone: self.contactTextField.text!) { (response) in
             if response.error != nil {
                 SVProgressHUD.showError(withStatus: response.error?.localizedDescription)
@@ -438,7 +438,7 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
         }
         
         SENetworkAPI.sharedInstance.uploadImages(number: time, images: imageArray, closure: { (progress) in
-            SVProgressHUD.showProgress(Float(progress.fractionCompleted))
+            SVProgressHUD.showProgress(Float(progress.fractionCompleted), status: "上传图片")
         }) { (response) in
             if response.error != nil {
                 SVProgressHUD.showError(withStatus: response.error?.localizedDescription)
