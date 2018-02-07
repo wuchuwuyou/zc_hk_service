@@ -34,6 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         HostUserDefaults.addHost(host: HostModel(host: "60.29.131.62", port: "11000", method: "http", description: "外网"))
        /// "http://192.168.131.2:11000";//(一中心内网环境)
         HostUserDefaults.addHost(host: HostModel(host: "192.168.131.2", port: "11000", method: "http", description: "内网"))
+        let host = HostUserDefaults.currentHost()
+        if (host.host.isEmpty||host.port.isEmpty) {
+            HostUserDefaults.setCurrentHost(host: HostModel(host: "60.29.131.62", port: "11000", method: "http", description: "外网"))
+            return;
+        }
 
     }
     func applicationWillResignActive(_ application: UIApplication) {

@@ -99,12 +99,16 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
             let phone = self.repairInfo?.infos?.phoneNumber
             if (building?.isEmpty != true) {
                 self.buildBtn.setTitle(building, for: .normal)
+                self.selectBuilding = RepairOrgItem(objId: -1, objName: building!)
             }
             if (floor?.isEmpty != true) {
                 self.floorBtn.setTitle(floor, for: .normal)
+                self.selectFloor = RepairOrgItem(objId: -1, objName: floor!)
             }
             if (org?.isEmpty != true) {
-                self.areaBtn.setTitle(org, for: .normal)
+//                self.areaBtn.setTitle(org, for: .normal)
+                self.locationTextField.text = org
+                self.orgItem = RepairOrgItem(objId: (self.repairInfo?.infos?.orgId)!, objName: org!)
             }
             self.contactTextField.text = phone
         }
