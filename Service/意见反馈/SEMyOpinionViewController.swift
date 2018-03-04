@@ -66,11 +66,14 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
 //            已解决
             index = 0
             status = 0
+            self.dataArray = []
         }else if control.selectedSegmentIndex == 1 {
 //            未解决
             index = 0
             status = 1
+            self.dataArray = []
         }
+        SVProgressHUD.dismiss()
         self.tableView.mj_header.beginRefreshing()
     }
     func refresh() {
@@ -94,6 +97,7 @@ class SEMyOpinionViewController: UIViewController,UITableViewDelegate,UITableVie
                         msg = (error?.userInfo["message"] as! String)
                     }
                 }
+                self.tableView.reloadData()
                 SVProgressHUD.showError(withStatus: msg)
             }else {
                 let decoder = JSONDecoder()

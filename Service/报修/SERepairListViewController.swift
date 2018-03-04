@@ -72,6 +72,7 @@ class SERepairListViewController: UIViewController,UITableViewDelegate,UITableVi
             // 已反馈
             status = 2
         }
+        SVProgressHUD.dismiss()
         self.tableView.mj_header.beginRefreshing()
     }
     func refresh() {
@@ -90,6 +91,8 @@ class SERepairListViewController: UIViewController,UITableViewDelegate,UITableVi
                         msg = (error?.userInfo["message"] as! String)
                     }
                 }
+                self.dataArray = []
+                self.tableView.reloadData()
                 SVProgressHUD.showError(withStatus: msg)
             }else {
                 let decoder = JSONDecoder()

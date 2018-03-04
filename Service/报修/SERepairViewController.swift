@@ -226,13 +226,25 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
             SVProgressHUD.showInfo(withStatus: "请选择报修范围")
             return
         }
+        
         if self.contentTextView.text.isEmpty {
             SVProgressHUD.showInfo(withStatus: "请输入报修内容")
             return
         }
+        let orgRoom:String? = self.orgItem?.objName
         
-        if (self.orgItem?.objName?.isEmpty)! {
+        if (orgRoom == nil || orgRoom?.isEmpty == true) {
             SVProgressHUD.showInfo(withStatus: "请选择报修科室")
+            return
+        }
+        let contact = self.contactTextField.text
+        if (contact == nil || contact?.isEmpty == true) {
+            SVProgressHUD.showInfo(withStatus: "请输入联系方式")
+            return
+        }
+        
+        if (self.imageDataArray?.count == 0) {
+            SVProgressHUD.showInfo(withStatus: "请点击上传相册，选择上传图片")
             return
         }
         
