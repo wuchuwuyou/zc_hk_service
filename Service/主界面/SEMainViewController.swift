@@ -57,7 +57,7 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
         var sortData:[SEMenuItem] = []
         let data = SEModel.shared.menu
         for item in data! {
-            if (item.menuId == 79 || item.menuId == 80){
+            if (item.menuId == Service_type.baoxiu_service.rawValue || item.menuId == Service_type.tousu_service.rawValue){
                 sortData.append(item)
             }
         }
