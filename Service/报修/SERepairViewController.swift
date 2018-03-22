@@ -82,6 +82,8 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
         self.initView()
         self.requestRepairInfo()
         self.requestRepairArea()
+        //20180322 修改需求 在临时报修界面中，应在报修人联系方式一栏，默认显示该用户的登录账号
+        self.contactTextField.text = SEModel.shared.loginUser?.username
     }
     
     func requestRepairInfo() {
@@ -110,7 +112,7 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
                 self.locationTextField.text = org
                 self.orgItem = RepairOrgItem(objId: (self.repairInfo?.infos?.orgId)!, objName: org!)
             }
-            self.contactTextField.text = phone
+//            self.contactTextField.text = phone
         }
     }
 
@@ -231,12 +233,13 @@ class SERepairViewController: UIViewController,UITextFieldDelegate,SelectOrgItem
             SVProgressHUD.showInfo(withStatus: "请输入报修内容")
             return
         }
-        let orgRoom:String? = self.orgItem?.objName
+        // 20180322 修改需求 临时报修界面中，将报修科室修改为非必填项
+//        let orgRoom:String? = self.orgItem?.objName
         
-        if (orgRoom == nil || orgRoom?.isEmpty == true) {
-            SVProgressHUD.showInfo(withStatus: "请选择报修科室")
-            return
-        }
+//        if (orgRoom == nil || orgRoom?.isEmpty == true) {
+//            SVProgressHUD.showInfo(withStatus: "请选择报修科室")
+//            return
+//        }
         let contact = self.contactTextField.text
         if (contact == nil || contact?.isEmpty == true) {
             SVProgressHUD.showInfo(withStatus: "请输入联系方式")
