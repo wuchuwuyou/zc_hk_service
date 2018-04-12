@@ -31,7 +31,11 @@ class SEMyOpinionTableViewCell: UITableViewCell {
         self.label1.text = "建议标题:" + model.title!
         self.label2.text = "建议内容:" + model.content!
     }
-
+    func configCell(title:String,content:String,index:String) {
+        self.indexLabel.text = index
+        self.label1.text =  title
+        self.label2.text = content
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

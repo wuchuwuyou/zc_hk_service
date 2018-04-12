@@ -225,3 +225,51 @@ struct RepairListItem:Codable {
     let repairUserPhone:String?
     let unFinishedReason:String?
 }
+
+class SurveyProModel:Codable {
+    var sProId:Int?
+    var sProName:String?
+    var type:SurveyTypeModel?
+    var complainContent:String?
+}
+class SurveyTypeModel:Codable {
+    var typeId:Int?
+    var typeName:String?
+}
+
+class ProItem:Codable {
+    var suProItems:[SurveyProModel]?
+    var valueTypeId:Int?
+    var valueTypeName:String?
+}
+class SurveyInfo:Codable {
+    var evTypeItems:[SurveyTypeModel]?
+    var sProItems:[ProItem]?
+}
+
+class SurveyModel:Codable {
+    var resp:respModel?
+    var infos:SurveyInfo?
+}
+class SurveyCommitModel: Codable {
+    var evaluateType:Int?
+    var evaluateValue:String?
+    var surveyProject: String? = ""
+    var surveyProjectId:Int?
+}
+
+class SurveyListModel:Codable {
+    var resp:respModel?
+    var infos:SurveyListItemsModel
+}
+class SurveyListItemsModel: Codable {
+    var items:[SurveyListItemModel]?
+}
+
+class SurveyListItemModel: Codable {
+    var evaluateItems:[SurveyCommitModel]?
+    var submitDate:String?
+    var submitUser: String?
+    var surveyCode: String?
+}
+

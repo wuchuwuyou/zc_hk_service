@@ -103,23 +103,26 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
             return
         }
         let type = model?.menuId
-        switch type {
-            case Service_type.baoxiu_service.rawValue?:
-                let repair = SERepairViewController(nibName: "SERepairViewController", bundle: nil)
-                repair.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(repair, animated: true)
-                break
-            case Service_type.tousu_service.rawValue?:
-                let opinion = SEOpinionViewController(nibName: "SEOpinionViewController", bundle: nil)
-                opinion.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(opinion, animated: true)
-                break
-            case Service_type.default_service.rawValue?:
-                print("can't show service controller")
-                break
-            default:
-                print("can't show service controller")
-        }
+        let survey = SESurveyViewController(nibName: "SESurveyViewController", bundle: nil)
+        survey.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(survey, animated: true)
+//        switch type {
+//            case Service_type.baoxiu_service.rawValue?:
+//                let repair = SERepairViewController(nibName: "SERepairViewController", bundle: nil)
+//                repair.hidesBottomBarWhenPushed = true
+//                self.navigationController?.pushViewController(repair, animated: true)
+//                break
+//            case Service_type.tousu_service.rawValue?:
+//                let opinion = SEOpinionViewController(nibName: "SEOpinionViewController", bundle: nil)
+//                opinion.hidesBottomBarWhenPushed = true
+//                self.navigationController?.pushViewController(opinion, animated: true)
+//                break
+//            case Service_type.default_service.rawValue?:
+//                print("can't show service controller")
+//                break
+//            default:
+//                print("can't show service controller")
+//        }
     }
     /*
     // MARK: - Navigation

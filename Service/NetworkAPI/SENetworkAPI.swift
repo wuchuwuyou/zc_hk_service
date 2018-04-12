@@ -175,6 +175,61 @@ class SENetworkAPI: NSObject {
 
     }
     
+    ///满意度调查基础数据查询
+    public func satisfactionSurveyQuery(complete:@escaping (SEResponse) -> Void) {
+        
+        let satisfactionSurveyURL = self.requestURL(cmd: "SatisfactionSurveyTemQueryCommand")
+        let property:Parameters = ["evaluateTypeFlag":1,"surveyProjectFlag":1 ,"userAccount":SEModel.shared.loginUser?.username as Any]
+        let params = ["property":property]
+        
+        self.request(url: satisfactionSurveyURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+
+    }
+    /// 提交满意度调查
+    public func satisfactionSurveyCommit(items:Array<Any>,complete:@escaping (SEResponse) -> Void) {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMddHHmmss"
+        let time = formatter.string(from: date)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let time_ = formatter.string(from: date)
+
+        let commitURL = self.requestURL(cmd: "SatisfactionsurveyAddCommand")
+        let evaluateItems:Parameters = ["evaluateItems":items,"submitDate":time_,"submitUser":SEModel.shared.loginUser?.username as Any,"surveyCode":time]
+        
+        let property:Parameters = ["endDate":"","startDate":"","userAccount":SEModel.shared.loginUser?.username as Any]
+        let params = ["property":property,"infos":["items":[evaluateItems]]]
+        
+        self.request(url: commitURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+
+    }
+    /// 满意度调查列表
+    public func satisfactionSurveyList(complete:@escaping (SEResponse) -> Void) {
+        let ssListURL = self.requestURL(cmd: "SatisfactionsurveyQueryCommand")
+        
+        let property:Parameters = ["endDate":"","startDate":"","userAccount":SEModel.shared.loginUser?.username as Any]
+        let params = ["property":property]
+        
+        self.request(url: ssListURL, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
+            complete(response)
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public func uploadImages(number:String,images:[UIImage],closure: @escaping (Progress) -> Void,complete:@escaping (SEResponse) -> Void) {
         let upload_image_url = self.requestURL(cmd: "TemporaryRepairFileUploadCommand")
         

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="SERadioTableViewCell" customModule="Service" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arX-Rp-eMi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vvy-Wa-4dc">
+                                <rect key="frame" x="10" y="0.0" width="310" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Vvy-Wa-4dc" firstAttribute="leading" secondItem="arX-Rp-eMi" secondAttribute="leading" constant="10" id="28P-Ee-n7u"/>
+                            <constraint firstAttribute="height" constant="35" id="hoB-Su-ylt"/>
+                            <constraint firstAttribute="bottom" secondItem="Vvy-Wa-4dc" secondAttribute="bottom" id="ofw-MI-JuM"/>
+                            <constraint firstItem="Vvy-Wa-4dc" firstAttribute="top" secondItem="arX-Rp-eMi" secondAttribute="top" id="wqK-UF-CZK"/>
+                            <constraint firstAttribute="trailing" secondItem="Vvy-Wa-4dc" secondAttribute="trailing" id="zHg-qI-X1f"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kht-c2-PzX">
+                        <rect key="frame" x="0.0" y="35" width="320" height="24.5"/>
+                        <subviews>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgb-1H-XW8" customClass="SERadioBtn" customModule="Service" customModuleProvider="target">
+                                <rect key="frame" x="8" y="2" width="65" height="20.5"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BeQ-SV-w88"/>
+                                    <outletCollection property="groupButtons" destination="HSO-tV-fe8" id="oM1-bL-qhm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HSO-tV-fe8" customClass="SERadioBtn" customModule="Service" customModuleProvider="target">
+                                <rect key="frame" x="88" y="2.5" width="64.5" height="20.5"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Kg0-en-dXT"/>
+                                    <outletCollection property="groupButtons" destination="Ma3-aL-0vS" id="SQx-zq-8J4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ma3-aL-0vS" customClass="SERadioBtn" customModule="Service" customModuleProvider="target">
+                                <rect key="frame" x="167.5" y="2.5" width="65" height="20.5"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Avn-3J-Q86"/>
+                                    <outletCollection property="groupButtons" destination="506-ev-MhD" id="E54-iY-2F2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="506-ev-MhD" customClass="SERadioBtn" customModule="Service" customModuleProvider="target">
+                                <rect key="frame" x="247.5" y="2.5" width="64.5" height="20.5"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="clickBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nci-CB-quh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ma3-aL-0vS" firstAttribute="centerY" secondItem="HSO-tV-fe8" secondAttribute="centerY" id="Agm-tj-xlm"/>
+                            <constraint firstItem="HSO-tV-fe8" firstAttribute="width" secondItem="xgb-1H-XW8" secondAttribute="width" id="B2j-9I-WgI"/>
+                            <constraint firstAttribute="bottom" secondItem="xgb-1H-XW8" secondAttribute="bottom" constant="2" id="Bn4-to-q1K"/>
+                            <constraint firstItem="HSO-tV-fe8" firstAttribute="height" secondItem="xgb-1H-XW8" secondAttribute="height" id="FAd-hc-2XG"/>
+                            <constraint firstItem="xgb-1H-XW8" firstAttribute="top" secondItem="kht-c2-PzX" secondAttribute="top" constant="2" id="LBt-Uz-S0I"/>
+                            <constraint firstItem="506-ev-MhD" firstAttribute="centerY" secondItem="Ma3-aL-0vS" secondAttribute="centerY" id="Nox-P9-cMh"/>
+                            <constraint firstAttribute="trailing" secondItem="506-ev-MhD" secondAttribute="trailing" constant="8" id="Vgd-Kh-A4A"/>
+                            <constraint firstItem="Ma3-aL-0vS" firstAttribute="leading" secondItem="HSO-tV-fe8" secondAttribute="trailing" constant="15" id="YQf-Vd-pct"/>
+                            <constraint firstItem="506-ev-MhD" firstAttribute="width" secondItem="Ma3-aL-0vS" secondAttribute="width" id="b7c-ae-Sgs"/>
+                            <constraint firstItem="HSO-tV-fe8" firstAttribute="centerY" secondItem="xgb-1H-XW8" secondAttribute="centerY" id="eXT-X7-WLH"/>
+                            <constraint firstItem="Ma3-aL-0vS" firstAttribute="width" secondItem="HSO-tV-fe8" secondAttribute="width" id="fgi-xc-9vB"/>
+                            <constraint firstItem="506-ev-MhD" firstAttribute="leading" secondItem="Ma3-aL-0vS" secondAttribute="trailing" constant="15" id="iQh-lc-ZXi"/>
+                            <constraint firstItem="506-ev-MhD" firstAttribute="height" secondItem="Ma3-aL-0vS" secondAttribute="height" id="iud-9X-Woz"/>
+                            <constraint firstItem="HSO-tV-fe8" firstAttribute="leading" secondItem="xgb-1H-XW8" secondAttribute="trailing" constant="15" id="l8U-50-Zz8"/>
+                            <constraint firstItem="xgb-1H-XW8" firstAttribute="leading" secondItem="kht-c2-PzX" secondAttribute="leading" constant="8" id="t5J-ME-SDr"/>
+                            <constraint firstItem="Ma3-aL-0vS" firstAttribute="height" secondItem="HSO-tV-fe8" secondAttribute="height" id="toJ-w0-kq9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="arX-Rp-eMi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0fL-Vt-jeV"/>
+                    <constraint firstAttribute="bottom" secondItem="kht-c2-PzX" secondAttribute="bottom" id="75h-3B-tVh"/>
+                    <constraint firstAttribute="trailing" secondItem="arX-Rp-eMi" secondAttribute="trailing" id="91A-NL-gYk"/>
+                    <constraint firstItem="arX-Rp-eMi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CbB-2a-EB0"/>
+                    <constraint firstItem="kht-c2-PzX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NO3-je-sl7"/>
+                    <constraint firstItem="kht-c2-PzX" firstAttribute="top" secondItem="arX-Rp-eMi" secondAttribute="bottom" id="gEw-xM-KZ3"/>
+                    <constraint firstAttribute="trailing" secondItem="kht-c2-PzX" secondAttribute="trailing" id="vUQ-H0-2f7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="btn1" destination="xgb-1H-XW8" id="AW2-jU-SUx"/>
+                <outlet property="btn2" destination="HSO-tV-fe8" id="b8y-f3-AHT"/>
+                <outlet property="btn3" destination="Ma3-aL-0vS" id="AJa-Ft-2Fr"/>
+                <outlet property="btn4" destination="506-ev-MhD" id="urX-ky-iEJ"/>
+                <outlet property="titleLbl" destination="Vvy-Wa-4dc" id="bUN-v3-3tE"/>
+            </connections>
+            <point key="canvasLocation" x="32" y="128"/>
+        </tableViewCell>
+    </objects>
+</document>
