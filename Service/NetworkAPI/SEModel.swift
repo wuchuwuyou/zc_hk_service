@@ -67,6 +67,7 @@ class SEMainListModel: NSObject {
 enum Service_type:Int {
     case baoxiu_service = 79
     case tousu_service = 80
+    case survey_service = 83
     case default_service = -1
 }
 

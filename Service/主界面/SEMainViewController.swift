@@ -57,7 +57,7 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
         var sortData:[SEMenuItem] = []
         let data = SEModel.shared.menu
         for item in data! {
-            if (item.menuId == Service_type.baoxiu_service.rawValue || item.menuId == Service_type.tousu_service.rawValue){
+            if (item.menuId == Service_type.baoxiu_service.rawValue || item.menuId == Service_type.tousu_service.rawValue || item.menuId == Service_type.survey_service.rawValue){
                 sortData.append(item)
             }
         }
@@ -103,26 +103,28 @@ class SEMainViewController: UIViewController,UICollectionViewDataSource,UICollec
             return
         }
         let type = model?.menuId
-        let survey = SESurveyViewController(nibName: "SESurveyViewController", bundle: nil)
-        survey.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(survey, animated: true)
-//        switch type {
-//            case Service_type.baoxiu_service.rawValue?:
-//                let repair = SERepairViewController(nibName: "SERepairViewController", bundle: nil)
-//                repair.hidesBottomBarWhenPushed = true
-//                self.navigationController?.pushViewController(repair, animated: true)
-//                break
-//            case Service_type.tousu_service.rawValue?:
-//                let opinion = SEOpinionViewController(nibName: "SEOpinionViewController", bundle: nil)
-//                opinion.hidesBottomBarWhenPushed = true
-//                self.navigationController?.pushViewController(opinion, animated: true)
-//                break
-//            case Service_type.default_service.rawValue?:
-//                print("can't show service controller")
-//                break
-//            default:
-//                print("can't show service controller")
-//        }
+        switch type {
+            case Service_type.baoxiu_service.rawValue?:
+                let repair = SERepairViewController(nibName: "SERepairViewController", bundle: nil)
+                repair.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(repair, animated: true)
+                break
+            case Service_type.tousu_service.rawValue?:
+                let opinion = SEOpinionViewController(nibName: "SEOpinionViewController", bundle: nil)
+                opinion.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(opinion, animated: true)
+                break
+            case Service_type.survey_service.rawValue?:
+                let survey = SESurveyViewController(nibName: "SESurveyViewController", bundle: nil)
+                survey.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(survey, animated: true)
+                break
+            case Service_type.default_service.rawValue?:
+                print("can't show service controller")
+                break
+            default:
+                print("can't show service controller")
+        }
     }
     /*
     // MARK: - Navigation

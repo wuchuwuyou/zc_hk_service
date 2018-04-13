@@ -63,7 +63,7 @@ class SENetworkAPI: NSObject {
     
     public func menuList(ac:String,complete:@escaping (SEResponse) -> Void) {
         let menu = self.requestURL(cmd: "APPMenuListSearchCmd")
-        let params:Parameters = ["userAccount":ac]
+        let params:Parameters = ["userAccountName":ac]
         
         self.request(url: menu, method: .post, parameters: params, encoding: JSONEncoding.default, headers: nil) { (response) in
             complete(response)

@@ -8,8 +8,8 @@
 
 import UIKit
 import WebKit
-
-class SESurveyDetailViewController: UIViewController {
+import SVProgressHUD
+class SESurveyDetailViewController: UIViewController,WKNavigationDelegate {
 
     @IBOutlet weak var webView: WKWebView!
     
@@ -20,7 +20,7 @@ class SESurveyDetailViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = "满意度调查详情"
-
+        self.webView.navigationDelegate = self
         if items != nil {
             var content = "<html><body><p style=\"font-size:50px\">"
             for model in items! {
@@ -54,7 +54,15 @@ class SESurveyDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        SVProgressHUD.show()
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        SVProgressHUD.dismiss()
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        SVProgressHUD.showError(withStatus: error.localizedDescription)
+    }
     /*
     // MARK: - Navigation
 
